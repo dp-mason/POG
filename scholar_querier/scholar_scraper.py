@@ -6,6 +6,7 @@
 
 from bs4 import BeautifulSoup
 import requests
+import random
 #import bibtexparser
 from time import sleep
 
@@ -16,6 +17,7 @@ from time import sleep
 
 DEBUG = 0
 REQUEST_DELAY = 5 #set to the ridiculously high time of 5 seconds for testing purposes PLZ DONT BAN ME GOOGLE !!!
+DIV_ENTRY_CLASS = 'gs_r gs_or gs_scl'
 
 # generates a google scholar SEARCH REQUEST URL from a search input
 # TODO: Will URL info channge based on someonse date/time/location/browser/etc ?
@@ -31,7 +33,7 @@ def scholar_url_maker(srch_str):
 # takes a URL as input, returns a beautiful soup data struct for that page
 def delayed_request(url):
     # TODO: introduce randomness to delay?
-    sleep(REQUEST_DELAY)
+    sleep( REQUEST_DELAY + (1 + random.random()) )
     raw_html = requests.get(url).text
     result_soup = BeautifulSoup(raw_html, 'lxml')
     return result_soup
@@ -79,8 +81,24 @@ def parse_scholar_entry(entry_div):
     return
 
 class ShortPaperInfo():
+    def cache_citing_papers(self, page_no):
+        # Avoids pages with no results
+        if page_no * 10 > self.cited_by_count:
+            return
+
+        index = self.cited_by_url.find('?')
+        citing_page_url = self.cited_by_url[:(index + 1)] + "start=" + str(page_no * 10) + "&hl=en&as_sdt=5,43&sciodt=0,43&" + self.cited_by_url[(index + 1):]
+        cited_by_soup = delayed_request(citing_page_url)
+        
+        papers_on_req_page = []
+        for curr_div_entry in cited_by_soup.find_all('div', class_='gs_r gs_or gs_scl'):
+            papers_on_req_page.append(ShortPaperInfo(curr_div_entry))
+        
+        # Merge result list of retrieved objects with current list, no duplicates
+        self.referenced_by = list(set(self.referenced_by + papers_on_req_page))
+
     def authordict_and_year(self, entry_div):
-        # TODO: properly parse the line 
+        # TODO: properly parse the line
         # 	<div class="gs_a"><a href="https://scholar.google.com/citations?user=YirSp_cAAAAJ&amp;hl=en&amp;oi=sra">K <b>Börner</b></a>, S Sanyal, <a href="https://scholar.google.com/citations?user=U3CXAPsAAAAJ&amp;hl=en&amp;oi=sra">A Vespignani</a>&nbsp;- …&nbsp;of information <b>science </b>and&nbsp;…, 2007 - Wiley Online Library</div>
         subsection = entry_div.find('div', class_='gs_a')
         
@@ -112,21 +130,52 @@ class ShortPaperInfo():
                 count_text = curr_a_tag.text
                 cited_by_count = count_text.split()[2]
                 break	
-        return cited_by_url, cited_by_count	
+        return cited_by_url, int(cited_by_count)
+    def get_source_url_and_id(self, div_entry):
+        for curr_a_tag in div_entry.find_all('a'):
+            if curr_a_tag.get('data-clk-atid') != None:
+                return curr_a_tag.get('href'), curr_a_tag.get('id')
+        return None
     def __init__(self, entry_div):
         # TODO: Extract the links to the authors' own pages !!!
         # authors_and_links Dictionary -> Key: Author Name, Value: Link to that author's scholar page 
-        self.authors_and_links, self.year 	   = self.authordict_and_year(entry_div)
-        self.titleShort     		   		   = entry_div.find('h3', class_='gs_rt').a.text
-        self.summaryShort             		   = entry_div.find('div', class_='gs_rs').text
-        self.source_url			   		       = entry_div.find('div', class_='gs_or_ggsm').a.get('href')
-        self.cited_by_url, self.cited_by_count = self.cited_by_url_and_count(entry_div)		   
+        self.authors_and_links, self.year      = self.authordict_and_year(entry_div)
+        self.title_short     		           = entry_div.find('h3', class_='gs_rt').a.text
+        self.summary_short                     = entry_div.find('div', class_='gs_rs').text
+        self.source_url, self.scholar_id	   = self.get_source_url_and_id(entry_div)
+        self.cited_by_url, self.cited_by_count = self.cited_by_url_and_count(entry_div)
+        
+        if self.cited_by_count == 0:
+            self.referenced_by = ["NoneExist"]
+        else:
+            self.referenced_by = []
+
+        if entry_div.find('div', class_='gs_or_ggsm') == None:
+            self.doc_url = ""
+        else:
+            self.doc_url = entry_div.find('div', class_='gs_or_ggsm').a.get('href')
+
         return
     def __str__(self):
-        output = str(self.__class__) + ": \n"
+        output = self.title_short + ": \n"
         for attribute in self.__dict__:
-            output += "   " + str(attribute) + ": " + str(self.__dict__[attribute]) + "\n"
+            if type(self.__dict__[attribute]) is not list:
+                output += "   " + str(attribute) + ": " + str(self.__dict__[attribute]) + "\n"
+        if len(self.referenced_by) > 0:
+            output += "\nREFERENCED BY:\n\n"
+        for item in self.referenced_by:
+            output += str(item) + "\n"
         return output
+    def __eq__(self, other):
+        if type(other) is ShortPaperInfo:
+            if other.titleShort == self.title_short and \
+                other.authors_and_links == self.authors_and_links and \
+                other.year == self.year:
+                return True
+        return False
+    def __hash__(self):
+      return hash((self.scholar_id, self.title_short))
+
 
 
 # class that is used to collect the data that will be packed into the JSON file
@@ -208,6 +257,7 @@ def tests():
     
     # Scholar search just returns the short info right now
     search_result = scholar_search(search_url)
+    search_result.cache_citing_papers(0)
     print(search_result)
     print("\nsearch_result.authors_and_links['K Börner'] == ", search_result.authors_and_links['K Börner'], "\n")
     assert search_result.authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
@@ -232,6 +282,7 @@ def main():
         if user_terms == "fuck off":
             break
         search_result = scholar_search(user_terms)
+        search_result.cache_citing_papers(0)
         print("\n", search_result)
         
     return
