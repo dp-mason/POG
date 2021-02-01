@@ -7,6 +7,7 @@
 from bs4 import BeautifulSoup
 import requests
 import random
+import json
 #import bibtexparser
 from time import sleep
 
@@ -15,7 +16,7 @@ from time import sleep
 # TODO: We should design this keeping FLEXIBILITY in mind, theres a lot more info that can be extracted from the search results page  
 # TODO: Put in some "try, except" statements so this program can fail gracefully if data doesn't align perfectly
 
-DEBUG = 0
+DEBUG = 1
 REQUEST_DELAY = 5 #set to the ridiculously high time of 5 seconds for testing purposes PLZ DONT BAN ME GOOGLE !!!
 DIV_ENTRY_CLASS = 'gs_r gs_or gs_scl'
 
@@ -174,7 +175,12 @@ class ShortPaperInfo():
                 return True
         return False
     def __hash__(self):
-      return hash((self.scholar_id, self.title_short))
+        return hash((self.scholar_id, self.title_short))
+    def to_json_file(self, file_name):
+        if file_name.lower().find(".json") == -1:
+            file_name += ".json"
+        with open(file_name, 'w') as outfile:
+            json.dump(self, outfile, sort_keys=True, indent=4, default=vars)
 
 
 
@@ -238,10 +244,6 @@ def scholar_search(srch_str):
     # TODO TODO: Grab the BASIC INFO from each paper in the FIRST PAGE of "cited_by" results
     return first_result_basic
 
-# exports the data in the class we have filled out as a JSON file using the (Jackson JSON library?)
-def json_export(paper_entry):
-    return
-
 def tests():
     search_string = "elephants"
     search_url = scholar_url_maker(search_string)
@@ -261,6 +263,11 @@ def tests():
     print(search_result)
     print("\nsearch_result.authors_and_links['K Börner'] == ", search_result.authors_and_links['K Börner'], "\n")
     assert search_result.authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+
+    # save ShortPaper class as JSON
+    search_result.to_json_file("output")
+
+    # TODO: re-open JSON and check that data is accessible, saved correctly
 
     # TODO: write hard-coded tests for:
     # 	scholar_search()
@@ -287,4 +294,5 @@ def main():
         
     return
 
-main()
+if DEBUG != 1:
+    main()
