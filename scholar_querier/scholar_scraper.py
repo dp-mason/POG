@@ -10,6 +10,7 @@ import random
 import json
 #import bibtexparser
 from time import sleep
+import re
 
 # TODO: Experiment to see exactly what the boundaries are for flying under the radar of scholar bot detection
 # TODO: should we extract the MLA citation or the BibTex? BibTex would be easier to parse, but possibly more automated requests
@@ -38,10 +39,6 @@ def delayed_request(url):
     raw_html = requests.get(url).text
     result_soup = BeautifulSoup(raw_html, 'lxml')
     return result_soup
-
-# takes a paper entry div as input and returns the info that can be gathered WITHOUT issuing out more requests
-def get_basic_info(entry_div):
-    return
 
 # TODO: will we use bibtex? It means more url requests (making users look more like bots), but will be easier to parse)
 # extracts the bibtex info from the first result in the html, parses it into a class that will be used to generate our json file
@@ -76,10 +73,6 @@ def extract_citation(entry_div):
     
     return mla_text
 
-# take the <div> section for the paper entry as input and populate a PaperEntry object with the info
-def parse_scholar_entry(entry_div): 
-    
-    return
 
 class ShortPaperInfo():
     def cache_citing_papers(self, page_no):
@@ -109,9 +102,16 @@ class ShortPaperInfo():
         
         # extract the year
         raw_string = str(subsection)
-        raw_string = raw_string[raw_string.rfind(',') + 2:]
-        raw_string = raw_string[:raw_string.rfind('-') - 1]
-        year = int(raw_string)
+        # extract all numbers from this string
+        numbers = re.findall('[0-9]+', raw_string)
+        if(len(numbers) > 1):
+            print("ShortPaperInfo.authordict_and_year(): one of these numbers is not the year, check to make sure everything works")
+
+        if(len(numbers) < 1):
+            print("no year found for ", self.title_short)
+            year = 0000
+        else:
+            year = int(numbers[-1])
 
         return author_dict, year
     def cited_by_url_and_count(self, entry_div):
@@ -135,13 +135,15 @@ class ShortPaperInfo():
     def get_source_url_and_id(self, div_entry):
         for curr_a_tag in div_entry.find_all('a'):
             if curr_a_tag.get('data-clk-atid') != None:
-                return curr_a_tag.get('href'), curr_a_tag.get('id')
+                return curr_a_tag.get('href'), curr_a_tag.get('data-clk-atid')
         return None
     def __init__(self, entry_div):
         # TODO: Extract the links to the authors' own pages !!!
-        # authors_and_links Dictionary -> Key: Author Name, Value: Link to that author's scholar page 
+        # authors_and_links Dictionary -> Key: Author Name, Value: Link to that author's scholar page
+        if entry_div.find('h3', class_='gs_rt').a == None:
+            return None
+        self.title_short     		       = entry_div.find('h3', class_='gs_rt').a.text            
         self.authors_and_links, self.year      = self.authordict_and_year(entry_div)
-        self.title_short     		           = entry_div.find('h3', class_='gs_rt').a.text
         self.summary_short                     = entry_div.find('div', class_='gs_rs').text
         self.source_url, self.scholar_id	   = self.get_source_url_and_id(entry_div)
         self.cited_by_url, self.cited_by_count = self.cited_by_url_and_count(entry_div)
@@ -205,44 +207,27 @@ def scholar_search(srch_str):
     search_url = scholar_url_maker(srch_str)
     search_soup = delayed_request(search_url)
 
-    first_result_entry = search_soup.find('div', class_='gs_r gs_or gs_scl')
+    result_entries = search_soup.find_all('div', class_='gs_r gs_or gs_scl')
 
+    # Printing the HTML will expose whether issues arise bc of a scholar block
     if DEBUG:
-        print("FIRST RESULT: \n\n", search_soup.prettify(), "\n")
+        print("FIRST RESULTS: \n\n", search_soup.prettify(), "\n")
 
     # TODO: handle a search that has no results more gracefully (what does the html of a "nothing found" or "WE FOUND UR BOT GET REKT" page look like?)
-    assert first_result_entry != None
+    assert result_entries != []
 
-    # TODO: This block of code used to extract every citation from each entry of each page of the "cited_by" page for apaper
-    #       commented out for now, because it was getting me banned from scholar :(
-    # # Extract the bibliographic info from each of the papers that cite this one. Space requests out by 100 ms. 
-    # # Each page in the "cited by" results contians 10 entries. This tag:
-    # # 	start=10&hl=en&as_sdt=5,43&sciodt=0,43&
-    # # denotes the start point of the results on each page
-    # curr_page = 0
-    # cited_by_paper_entries = []
-    # while cited_by_url != "":
-    # 	index = cited_by_url.find('?')
-    # 	curr_page_url = cited_by_url[:(index + 1)] + "start=" + str(curr_page * 10) + "&hl=en&as_sdt=5,43&sciodt=0,43&" + cited_by_url[(index + 1):]
-    # 	cited_by_soup = delayed_request(curr_page_url)
-    # 	for curr_entry in cited_by_soup.find_all('div', class_="gs_r gs_or gs_scl"):
-    # 		mla_text = extract_citation(curr_entry)
-    # 		print(mla_text)
-    # 		#print(curr_entry.prettify(), "\n")
-    # 		#curr_parsed_entry = parse_scholar_entry(entry_div)
-    # 		#cited_by_paper_entries.append(curr_parsed_entry)
-    # 	curr_page += 1
-    # 	# XXX protects from over-requesting
-    # 	if curr_page > 2:
-    # 		cited_by_url = ""
-
-    # Grabs the basic info for this paper
+    # Grabs the basic info for the first 10 papers
 
     # get BASIC INFO from the first result itself
-    first_result_basic = ShortPaperInfo(first_result_entry)
+    first_ten_results = []
+    for entry in result_entries:
+        print("\n\n", entry.prettify(), "\n\n")
+        parsed_entry = ShortPaperInfo(entry)
+        if parsed_entry != None:
+            first_ten_results.append(ShortPaperInfo(entry))
 
     # TODO TODO: Grab the BASIC INFO from each paper in the FIRST PAGE of "cited_by" results
-    return first_result_basic
+    return first_ten_results
 
 def tests():
     search_string = "elephants"
@@ -258,14 +243,16 @@ def tests():
     assert search_url == "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q=network+science+borner&btnG="
     
     # Scholar search just returns the short info right now
-    search_result = scholar_search(search_url)
-    search_result.cache_citing_papers(0)
-    print(search_result)
-    print("\nsearch_result.authors_and_links['K Börner'] == ", search_result.authors_and_links['K Börner'], "\n")
-    assert search_result.authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+    search_results = scholar_search(search_url)
+    search_results[0].cache_citing_papers(0)
+    print(search_results[0])
+    print("\nsearch_result.authors_and_links['K Börner'] == ", search_results[0].authors_and_links['K Börner'], "\n")
+    
+    assert search_results[0].authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+    assert search_results[0].scholar_id == "f0Kgtf5gNsgJ"
 
     # save ShortPaper class as JSON
-    search_result.to_json_file("output")
+    search_results[0].to_json_file("output")
 
     # TODO: re-open JSON and check that data is accessible, saved correctly
 
@@ -277,21 +264,28 @@ def tests():
     #   ERRYTHANG ELSE
 
     # TODO: keep in mind not every paper will have papers that cite it. Test those kinds of edge cases!!!
-
+    while True:
+        print("\n\nTESTS WITH YOUR INPUT:\n\n")
+        user_terms = user_terms = input("Enter some search terms: ")
+        if user_terms == "fuck off":
+            break
+        usr_search_results = scholar_search(user_terms)
+        usr_search_results[0].cache_citing_papers(0)
+        print("\n", usr_search_results[0])
+        
     return
 
 if DEBUG:
     tests()
 
 def main():
-    while True:
-        user_terms = user_terms = input("Enter some search terms: ")
-        if user_terms == "fuck off":
-            break
-        search_result = scholar_search(user_terms)
-        search_result.cache_citing_papers(0)
-        print("\n", search_result)
-        
+    # Pseudocode for final real functionality:
+    # Open HTML file
+    # Parse results found in the HTML opened
+    # Create a JSON that will be sent back to the REST API
+    
+    # TODO: how does python interface with SQL
+    # Make an entry into the SQL table for the parsed papers, make info updates in table if necessary
     return
 
 if DEBUG != 1:
