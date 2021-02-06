@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function makejson(){
+                //JSON.parse()
+                document.getElementById("jsonstuff").innerHTML = document.getElementById("searchterms").value;
+                return;
+            }
+        </script>
+    </head>
+
+    <body>
+<h1>Hello welcome to the form</h1>
+<!--<form>-->
+    <input type="text" id="searchterms" />
+    <button onclick="makejson()">Magic button</button>
+<!--</form>-->
+<p id="jsonstuff"></p>
+    </body>
+
+</html>
