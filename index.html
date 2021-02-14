@@ -7,6 +7,35 @@
                 document.getElementById("jsonstuff").innerHTML = document.getElementById("searchterms").value;
                 return;
             }
+
+            function getGSfromsearch(){
+                /*Python version
+                def scholar_url_maker(srch_str):
+                    terms_str = srch_str.replace(" ", "+")
+                    before_terms = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q="
+                    after_terms = "&btnG="
+                    req_url = before_terms + terms_str + after_terms
+                    return req_url
+                */
+                var srch_str = document.getElementById("searchterms").value;
+
+                var before_terms = "http://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q=";
+                var terms_str = srch_str.replace(" ", "+");
+                var after_terms = "&btnG=";
+                var req_url = before_terms + terms_str + after_terms;
+
+                var gs_request = new XMLHttpRequest();
+                gs_request.open('GET', req_url);
+
+                gs_request.onload = function(){
+                    console.log(gs_request.responseText());
+
+                }
+                gs_request.send();
+
+                return;
+            }
+
         </script>
     </head>
 
@@ -14,7 +43,7 @@
 <h1>Hello welcome to the form</h1>
 <!--<form>-->
     <input type="text" id="searchterms" />
-    <button onclick="makejson()">Magic button</button>
+    <button onclick="getGSfromsearch()">Magic button</button>
 <!--</form>-->
 <p id="jsonstuff"></p>
     </body>
