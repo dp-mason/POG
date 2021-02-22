@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Papers on a Graph",
+    "description": "Interavtive citation relationship explorer",
+    "version": "1.0",
+  
+    "browser_action": {
+        "default_icon": "pog.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "https://scholar.google.com/*",
+        "http://scholar.google.com/*"
+    ],
+    "content_scripts": [
+    {
+        "matches": ["https://scholar.google.com/*", "http://scholar.google.com/*"],
+        "js": ["return_html.js"]
+    }
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    }
+  }
