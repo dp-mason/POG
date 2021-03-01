@@ -10,6 +10,23 @@ chrome.runtime.onMessage.addListener((msg) => {
         console.log('recved html msg', raw_html);
         // send this raw html to your server, wait for response, then update the user with info
     }
+
+    // send html to our server for storage
+    const url = "http://localhost:8080/papers/submitPaper";
+    fetch(url, {
+        method : "POST",
+        body: raw_html,
+        // -- or --
+        // body : JSON.stringify({
+        // user : document.getElementById('user').value,
+        // ...
+        // })
+    }).then(
+        response => response.text() //.json(), etc.
+        // same as function(response) {return response.text();}
+    ).then(
+        html => console.log(html)
+    );
 });
 
 document.addEventListener('DOMContentLoaded', function() {

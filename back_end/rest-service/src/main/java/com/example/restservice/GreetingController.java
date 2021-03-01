@@ -31,6 +31,9 @@ public class GreetingController {
         //      3. While it is running, go to your web browser and type in "localhost:8080/greeting" or whatever port it is
         //              you should now have a JSON file
         //      4. Now you can do it again with your chosen name by typing in "localhost:8080/greeting?name=POG-GROUP"
+        System.out.println("bop");
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
+
+
 }
