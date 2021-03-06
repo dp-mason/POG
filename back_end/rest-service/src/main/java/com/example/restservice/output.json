@@ -1,0 +1,165 @@
+{
+    "authors_and_links": {
+        "A Vespignani": "https://scholar.google.com/citations?user=U3CXAPsAAAAJ&hl=en&oe=ASCII&oi=sra",
+        "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+    },
+    "cited_by_count": 389,
+    "cited_by_url": "https://scholar.google.com/scholar?cites=14426825103413101183&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+    "doc_url": "https://www.researchgate.net/profile/Katy_Borner/publication/220141972_Network_science/links/00b7d529ceaa1097c5000000.pdf",
+    "referenced_by": [
+        {
+            "authors_and_links": {
+                "B Vargas-Quesada": "https://scholar.google.com/citations?user=b_A0QD4AAAAJ&hl=en&oe=ASCII&oi=sra",
+                "F Moya-Aneg\u00f3n": "https://scholar.google.com/citations?user=IvruGDUAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "V Herrero-Solana": "https://scholar.google.com/citations?user=OKIleUEAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 293,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=14955132727279659603&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "http://eprints.rclis.org/8087/1/Diplomarbeit_Strik_Yoshi.pdf",
+            "referenced_by": [],
+            "scholar_id": "U6pS0vpNi88J",
+            "source_url": "http://eprints.rclis.org/8087/1/Diplomarbeit_Strik_Yoshi.pdf",
+            "summary_short": "Our objective is the generation of schematic visualizations as interfaces for scientific domain analysis. We propose a new technique that uses thematic classification (classes and categories) as entities of cocitation and units of measure, and demonstrate the viability of\u00a0\u2026",
+            "title_short": "A new technique for building maps of large scientific domains based on the cocitation of classes and categories",
+            "year": 2004
+        },
+        {
+            "authors_and_links": {
+                "A Ortega": "https://scholar.google.com/citations?user=K4bCJYcAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "J Kova\u010devi\u0107": "https://scholar.google.com/citations?user=LNhBbPEAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "P Frossard": "https://scholar.google.com/citations?user=-Ve9sJ0AAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 519,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=8731468578157020981&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://arxiv.org/pdf/1712.00468",
+            "referenced_by": [],
+            "scholar_id": "NceIGGloLHkJ",
+            "source_url": "https://arxiv.org/pdf/1712.00468",
+            "summary_short": "Research in graph signal processing (GSP) aims to develop tools for processing data defined on irregular graph domains. In this paper, we first provide an overview of core ideas in GSP and their connection to conventional digital signal processing, along with a brief\u00a0\u2026",
+            "title_short": "Graph signal processing: Overview, challenges, and applications",
+            "year": 2018
+        },
+        {
+            "authors_and_links": {
+                "O Sporns": "https://scholar.google.com/citations?user=gzPWwdIAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "RF Betzel": "https://scholar.google.com/citations?user=3j9gqsEAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 693,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=10170721415005482050&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc4782188/",
+            "referenced_by": [],
+            "scholar_id": "Qizcej2pJY0J",
+            "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc4782188/",
+            "summary_short": "The development of new technologies for mapping structural and functional brain connectivity has led to the creation of comprehensive network maps of neuronal circuits and systems. The architecture of these brain networks can be examined and analyzed with a\u00a0\u2026",
+            "title_short": "Modular brain networks",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "R Baggio": "https://scholar.google.com/citations?user=KBeq0gIAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 376,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=10692363558681353999&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://arxiv.org/pdf/0905.2734",
+            "referenced_by": [],
+            "scholar_id": "D5-IjAHoYpQJ",
+            "source_url": "https://arxiv.org/pdf/0905.2734",
+            "summary_short": "Tourism destinations have a necessity to innovate in order to remain competitive in an increasingly global environment. A pre-requisite for innovation is the understanding of how destinations source, share and use knowledge. This conceptual paper examines the nature\u00a0\u2026",
+            "title_short": "Knowledge transfer in a tourism destination: the effects of a network structure",
+            "year": 2010
+        },
+        {
+            "authors_and_links": {
+                "E Bullmore": "https://scholar.google.com/citations?user=x0y65DUAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "O Sporns": "https://scholar.google.com/citations?user=gzPWwdIAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 8867,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=9296037571490498057&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://warwick.ac.uk/fac/sci/dcs/research/combi/seminars/bullmoresporns_complexbrainnetwork_nrn2009.pdf",
+            "referenced_by": [],
+            "scholar_id": "CUZgM-soAoEJ",
+            "source_url": "https://warwick.ac.uk/fac/sci/dcs/research/combi/seminars/bullmoresporns_complexbrainnetwork_nrn2009.pdf",
+            "summary_short": "Recent developments in the quantitative analysis of complex networks, based largely on graph theory, have been rapidly translated to studies of brain network organization. The brain's structural and functional systems have features of complex networks\u2014such as small\u00a0\u2026",
+            "title_short": "Complex brain networks: graph theoretical analysis of structural and functional systems",
+            "year": 2009
+        },
+        {
+            "authors_and_links": {
+                "K Yang": "https://scholar.google.com/citations?user=MZcRvVYAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "LI Meho": "https://scholar.google.com/citations?user=OBhOQoYAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 1088,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=7127626686382352864&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "http://eprints.rclis.org/8876/1/meho-yang-03.pdf",
+            "referenced_by": [],
+            "scholar_id": "4ClqHbVq6mIJ",
+            "source_url": "http://eprints.rclis.org/8876/1/meho-yang-03.pdf",
+            "summary_short": "Abstract The Institute for Scientific Information's (ISI, now Thomson Scientific, Philadelphia, PA) citation databases have been used for decades as a starting point and often as the only tools for locating citations and/or conducting citation analyses. The ISI databases (or Web of\u00a0\u2026",
+            "title_short": "Impact of data sources on citation counts and rankings of LIS faculty: Web of Science versus Scopus and Google Scholar",
+            "year": 2007
+        },
+        {
+            "authors_and_links": {
+                "LI Meho": "https://scholar.google.com/citations?user=OBhOQoYAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 380,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=17370631164502532347&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://arxiv.org/pdf/physics/0701012,",
+            "referenced_by": [],
+            "scholar_id": "--CAtALhEPEJ",
+            "source_url": "https://arxiv.org/pdf/physics/0701012,",
+            "summary_short": "It is a sobering fact that some 90% of papers that have been published in academic journals are never cited. Indeed, as many as 50% of papers are never read by anyone other than their authors, referees and journal editors. We know this thanks to citation analysis, a branch\u00a0\u2026",
+            "title_short": "The rise and rise of citation analysis",
+            "year": 2007
+        },
+        {
+            "authors_and_links": {
+                "A Casteigts": "https://scholar.google.com/citations?user=duZpg60AAAAJ&hl=en&oe=ASCII&oi=sra",
+                "P Flocchini": "https://scholar.google.com/citations?user=LVdJjiUAAAAJ&hl=en&oe=ASCII&oi=sra",
+                "W Quattrociocchi": "https://scholar.google.com/citations?user=_OCIc6UAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 532,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=882169211581361230&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://arxiv.org/pdf/1012.0009",
+            "referenced_by": [],
+            "scholar_id": "TuwXWDkYPgwJ",
+            "source_url": "https://arxiv.org/pdf/1012.0009",
+            "summary_short": "The past few years have seen intensive research efforts carried out in some apparently unrelated areas of dynamic systems\u2013delay-tolerant networks, opportunistic-mobility networks and social networks\u2013obtaining closely related insights. Indeed, the concepts\u00a0\u2026",
+            "title_short": "Time-varying graphs and dynamic networks",
+            "year": 2012
+        },
+        {
+            "authors_and_links": {
+                "W De Haan": "https://scholar.google.com/citations?user=qUEBZWQAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 352,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=5324863110808782930&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "https://bmcneurosci.biomedcentral.com/articles/10.1186/1471-2202-10-101",
+            "referenced_by": [],
+            "scholar_id": "UshWdcm25UkJ",
+            "source_url": "https://bmcneurosci.biomedcentral.com/articles/10.1186/1471-2202-10-101",
+            "summary_short": "Although a large body of knowledge about both brain structure and function has been gathered over the last decades, we still have a poor understanding of their exact relationship. Graph theory provides a method to study the relation between network structure\u00a0\u2026",
+            "title_short": "Functional neural network analysis in frontotemporal dementia and Alzheimer's disease using EEG and graph theory",
+            "year": 2009
+        },
+        {
+            "authors_and_links": {
+                "M Thelwall": "https://scholar.google.com/citations?user=8jCKL1sAAAAJ&hl=en&oe=ASCII&oi=sra"
+            },
+            "cited_by_count": 424,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=5809004592257513624&as_sdt=5,43&sciodt=0,43&hl=en&oe=ASCII",
+            "doc_url": "",
+            "referenced_by": [],
+            "scholar_id": "mDgfNOa6nVAJ",
+            "source_url": "https://www.morganclaypool.com/doi/abs/10.2200/S00176ED1V01Y200903ICR004",
+            "summary_short": "Webometrics is concerned with measuring aspects of the web: web sites, web pages, parts of web pages, words in web pages, hyperlinks, web search engine results. The importance of the web itself as a communication medium and for hosting an increasingly wide array of\u00a0\u2026",
+            "title_short": "Introduction to webometrics: Quantitative web research for the social sciences",
+            "year": 2009
+        }
+    ],
+    "scholar_id": "f0Kgtf5gNsgJ",
+    "source_url": "https://www.researchgate.net/profile/Katy_Borner/publication/220141972_Network_science/links/00b7d529ceaa1097c5000000.pdf",
+    "summary_short": "This chapter reviews the highly interdisciplinary field of network science, which is concerned with the study of networks, be they biological, technological, or scholarly in character. It contrasts, compares, and integrates techniques and algorithms developed in disciplines as\u00a0\u2026",
+    "title_short": "Network science",
+    "year": 2007
+}

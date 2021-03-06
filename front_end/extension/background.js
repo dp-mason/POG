@@ -21,12 +21,17 @@ chrome.runtime.onMessage.addListener((msg) => {
         // user : document.getElementById('user').value,
         // ...
         // })
-    }).then(
-        response => response.text() //.json(), etc.
-        // same as function(response) {return response.text();}
-    ).then(
-        html => console.log(html)
-    );
+    })
+    .then(function(response) {
+        console.log(response.headers.get('Content-Type'));
+    
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.type);
+        console.log(response.url);
+        console.log(response.json());
+
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
