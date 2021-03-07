@@ -23,6 +23,7 @@
     ],
     "background": {
         "scripts": ["background.js"],
-        "persistent": true
+        "persistent": true,
+	"permissions": ["activeTab", "tabs", "https://scholar.google.com/*", "http://scholar.google.com/*"]
     }
   }

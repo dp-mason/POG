@@ -1,37 +1,40 @@
+// TODO: DOCUMENT THISBETTER AND CLEANUP
+
 //function makejson(){
     //JSON.parse()
 //    document.getElementById("jsonstuff").innerHTML = document.getElementById("searchterms").value;
 //    return;
 //}
 
+// catches messages sent from the scholar script, currently forwards data to our server for parsing
 chrome.runtime.onMessage.addListener((msg) => {
     if(msg.type == "html"){
         raw_html = msg.html;
         console.log('recved html msg', raw_html);
         // send this raw html to your server, wait for response, then update the user with info
+
+        // send raw html to our server for parsing
+        // recv the result of the parsing and print it to the console
+        const url = "http://localhost:8080/papers/submitPaper";
+        fetch(url, {
+            method : "POST",
+            body: raw_html,
+            // -- or --
+            // body : JSON.stringify({
+            // user : document.getElementById('user').value,
+            // ...
+            // })
+        })
+        .then(function(response) {
+            console.log(response.headers.get('Content-Type'));
+        
+            console.log(response.status);
+            console.log(response.statusText);
+            console.log(response.type);
+            console.log(response.url);
+            console.log(response.json());
+        });
     }
-
-    // send html to our server for storage
-    const url = "http://localhost:8080/papers/submitPaper";
-    fetch(url, {
-        method : "POST",
-        body: raw_html,
-        // -- or --
-        // body : JSON.stringify({
-        // user : document.getElementById('user').value,
-        // ...
-        // })
-    })
-    .then(function(response) {
-        console.log(response.headers.get('Content-Type'));
-    
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.type);
-        console.log(response.url);
-        console.log(response.json());
-
-    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return req_url
         */
 
-        console.log("Hellow World\n");
+        console.log("Beginning Request...\n");
 
         var srch_str = document.getElementById("searchterms").value;
 
@@ -80,7 +83,72 @@ document.addEventListener('DOMContentLoaded', function() {
         
         //gs_request.send();
 
-        //sends message to the scholar tab asking for it to send its document.
+        // var that stores whether a scholar tab is the currently active tab
+        var scholarActive = false;
+        // stores an inactive scholar tab if one exists
+        var targetTabID = null;
+
+        chrome.tabs.query({currentWindow: true, active: true}, function(tabsArray) {
+            targetTabID = tabsArray[0].id;
+        });
+
+        // if the active tab is a a scholar tab, target it
+        chrome.tabs.query({currentWindow: true, active: true}, function(tabsArray) {
+            if(tabsArray[0].url.search("www.scholar.google.com/") > -1){
+                scholarActive = true;
+                console.log("active tab is a scholar tab");
+            }
+        });
+
+        if (scholarActive = false){
+            // else find a scholar tab that already exists that is inactive, if there is one.
+            chrome.tabs.query({}, function(tabsArray) {
+                // look for scholar tabs
+                for (var i = 0; i < tabsArray.length; i++) {
+                    if (tabsArray[i].url.search("www.scholar.google.com/") > -1){
+                        console.log("found an inactive scholar tab");
+                        targetTabID = tabsArray[i].id;
+                        break;
+                    }
+                }
+                // make this inactive tab the active one
+                chrome.tabs.update(targetTabID, {active: true});
+                scholarActive = true;
+                console.log("made inactive scholar tab the active tab")
+            });
+        }
+
+        //if(scholarActive){
+        //    // update the active tab now that we know the active tab is a scholar tab
+        //    chrome.tabs.update(targetTabID, { active: true, url: req_url }, function(tab){});
+        //    console.log("updated the active tab")
+        //}
+
+        // PLACEHOLDER FOR SOMETHING MORE NUANCED, JUST UPDATES ACTIVE TAB NOW. 
+        // TODO: IF ACTIVE ALREADY SCHOLAR, NO UPDATE, JUS)T HARVEST HTML
+        chrome.tabs.update(targetTabID, { active: true, url: req_url }, function(tab){});
+        console.log("updated the active tab")
+
+        //else{
+            // create a scholar tab if there is none
+        //    chrome.tabs.create({'url':req_url})
+        //    console.log("created new tab")
+            // TODO: DO WE NEED TO SWITCH THE ACTIVE TAB TO THIS NEW TAB???
+        //}
+        
+        // XXX: ????
+        // if no scholar tab exists:
+        // chrome.tabs.create({'url':req_url})
+        // else, switch the current tab to the scholar tab and navigate to the new page
+
+        // updates the current tab with the search query page
+        //var activeTab = arrayOfTabs[0].id
+        //chrome.tabs.update(activeTab, {
+        //    active: true,
+        //    url: req_url
+        //}, function(tab){});
+
+        // sends message to the scholar tab asking for it to send its document.
         var raw_html;
         chrome.tabs.query({active: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {

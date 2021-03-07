@@ -62,7 +62,7 @@ public class ScholarHtmlController {
 
         PaperInfo user_paper = new PaperInfo();
 
-        // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or backend Java parsing
+        // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or native backend Java parsing
         // call the python program to parse the file (file name as command line argument?)
         Runtime.getRuntime().exec("/home/david/Desktop/sda1/Senior/POG/back_end/rest-service/parse.sh");
 
@@ -82,6 +82,8 @@ public class ScholarHtmlController {
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader(parsed_output_name));
         JSONObject result_json = (JSONObject) obj;
+
+        parsed_file.delete();
 
         // Initialize the data structure that will be used to enter stuff into SQL database
         // Loop over all papers on this page

@@ -9,5 +9,8 @@ chrome.runtime.onMessage.addListener(
             setTimeout(function(){ chrome.runtime.sendMessage({html: raw_html, type: "html"}); }, 10);
             return true;
         }
+        if (request.msg == "update_tab"){
+            return true;
+        }
     }
 );
