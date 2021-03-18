@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Papers On A Graph</title>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <style>
+
+html {
+  position: relative;
+  min-width: 1024px;
+  min-height: 768px;
+}
+
+.node circle {
+  cursor: pointer;
+  stroke:white;
+  stroke-width: 2px;
+}
+
+.node text {
+  font: 10px sans-serif;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+line.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+
+#notes {
+    float: left;
+    margin-left: 40px;
+    padding-top: 100px;
+    position: fixed;
+    font-family: 'Courier New', Courier, monospace, Sans-Serif
+}
+
+p{
+  font-family: Helvetica, Sans-Serif;
+  line-height: 1.5;
+}
+
+
+body {
+  margin: auto;
+  width: 100%;
+}
+
+header{
+    display: block;
+    text-align: center;
+    color: #86cfff;
+    width: 100%;
+    position: fixed;
+    font-family: Helvetica, Sans-Serif;
+    margin-bottom: 20px;
+}
+
+form{
+    display: block;
+    text-align: center;
+    color: #76b8e4;
+    width: 100%;
+    font-family: Helvetica, Sans-Serif;
+}
+
+#stuff{
+  padding-top: 40px;
+}
+
+
+
+    </style>
+</head>
+<body height = "300" width = "300">
+    <header>
+        <h1>
+            Papers on a Graph
+        </h1>
+        <form>
+          <input type="radio" id="expand" name="click" value="expand">
+          <label for="expand">Expand</label><br>
+          <input type="radio" id="info" name="click" value="info">
+          <label for="info">Info</label><br>
+        </form> 
+    </header>
+    
+    
+    <div id='stuff'>
+        <div id='graph'></div>
+        <div id='notes'></div>
+    </div>
+    <script src='graph.js'></script>
+</body>
+</html>
