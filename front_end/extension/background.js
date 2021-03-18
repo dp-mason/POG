@@ -6,6 +6,11 @@
 //    return;
 //}
 
+chrome.browserAction.onClicked.addListener(function(tab) {
+    chrome.tabs.executeScript( {file: "/d3.js"});
+    //chrome.tabs.executeScript( {file: "reviews.js" });
+});
+
 // catches messages sent from the scholar script, currently forwards data to our server for parsing
 chrome.runtime.onMessage.addListener((msg) => {
     if(msg.type == "html"){
@@ -83,7 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         //gs_request.send();
 
-        // var that stores whether a scholar tab is the currently active tab
+        // TODO: RESORE THIS vvv BLOCK ONE DAY :(
+        /*// var that stores whether a scholar tab is the currently active tab
         var scholarActive = false;
         // stores an inactive scholar tab if one exists
         var targetTabID = null;
@@ -127,7 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // PLACEHOLDER FOR SOMETHING MORE NUANCED, JUST UPDATES ACTIVE TAB NOW. 
         // TODO: IF ACTIVE ALREADY SCHOLAR, NO UPDATE, JUS)T HARVEST HTML
         chrome.tabs.update(targetTabID, { active: true, url: req_url }, function(tab){});
-        console.log("updated the active tab")
+        console.log("updated the active tab")*/
+        // TODO: RESORE THIS ^^^ BLOCK ONE DAY :(
 
         //else{
             // create a scholar tab if there is none
