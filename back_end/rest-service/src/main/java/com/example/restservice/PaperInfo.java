@@ -2,15 +2,7 @@ package com.example.restservice;
 
 // This Class corresponds wit he "ShortPaperInfo" Class in the Python program
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.Hashtable;
-import java.util.Vector;
-
-import java.io.FileReader;
 
 public class PaperInfo {
     String title_short;
@@ -24,7 +16,7 @@ public class PaperInfo {
     //Vector<PaperInfo> referenced_by;
     String doc_url;
 
-    public void initFromJSON(String file_name) throws JSONException, IOException, ParseException {
+    /*public void initFromJSON(String file_name) throws JSONException, IOException, ParseException {
         // TODO: THIS IS NAIIVE, only sends back our predetermined output.JSON, get it to work with the python output
         Object obj = new JSONParser().parse(new FileReader(file_name));
         // typecasting obj to JSONObject
@@ -43,5 +35,6 @@ public class PaperInfo {
         this.cited_by_count = (Long) parsed_object.get("cited_by_count");
         //this.referenced_by;
         this.doc_url = (String) parsed_object.get("doc_url");
-    }
+    }*/
+
 }
