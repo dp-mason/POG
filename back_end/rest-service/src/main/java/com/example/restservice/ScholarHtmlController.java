@@ -64,7 +64,7 @@ public class ScholarHtmlController {
 
         // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or native backend Java parsing
         // call the python program to parse the file (file name as command line argument?)
-        Runtime.getRuntime().exec("/home/david/Desktop/sda1/Senior/POG/back_end/rest-service/parse.sh");
+        Runtime.getRuntime().exec("C:\\Users\\IEUser\\Desktop\\POG\\back_end\\rest-service\\parse.bat");
 
         // wait for output json to come back from Python
         File parsed_file = new File(parsed_output_name);
