@@ -16,6 +16,12 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>locallibrary</id>
+			<url>file://${project.basedir}/lib</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,7 +49,8 @@
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1</version>
-			<systemPath>${basedir}/lib/json-simple-1.1.jar</systemPath>
+			<!--<scope>system</scope>
+			<systemPath>${basedir}/lib/json-simple-1.1.jar</systemPath>-->
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -56,6 +63,29 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<id>install-external</id>
+						<phase>clean</phase>
+						<configuration>
+							<file>${basedir}/lib/json-simple-1.1.jar</file>
+							<repositoryLayout>default</repositoryLayout>
+							<groupId>com.googlecode.json-simple</groupId>
+							<artifactId>json-simple</artifactId>
+							<version>1.1</version>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+						</configuration>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
