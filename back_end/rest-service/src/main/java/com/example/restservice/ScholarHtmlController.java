@@ -64,7 +64,7 @@ public class ScholarHtmlController {
 
         // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or native backend Java parsing
         // call the python program to parse the file (file name as command line argument?)
-        Runtime.getRuntime().exec("C:\\Users\\IEUser\\Desktop\\POG\\back_end\\rest-service\\parse.bat");
+        Runtime.getRuntime().exec("C:\\Users\\benya\\OneDrive\\Desktop\\sen_sem\\gitsem\\POG\\back_end\\rest-service\\parse.bat");
 
         // wait for output json to come back from Python
         File parsed_file = new File(parsed_output_name);
@@ -79,11 +79,35 @@ public class ScholarHtmlController {
             }
         }
 
+        int parentId = 175;
+        DBAccesser dba = new DBAccesser();
+        Integer[] cids = dba.getCitedIds(parentId);
+        GSData parent = new GSData();
+        dba.getPaperRow(parentId, parent);
+
+        GSData[] gsdArr = new GSData[cids.length];
+        for (int i = 0; i < cids.length; i++) {
+            GSData gsd = new GSData();
+
+            dba.getPaperRow(cids[i], gsd);
+            dba.getCitedCount(cids[i], gsd);
+            dba.getAuthors(cids[i], gsd);
+            gsdArr[i] = gsd;
+        }
+        dba.closeconnection();
+
+        String result_json_text = parent.toJSON(gsdArr);
+
+        System.out.println("Result: " + result_json_text);
+        //System.exit(0);
+
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader(parsed_output_name));
+        //Object obj = parser.parse(result_json_text);
+
         JSONObject result_json = (JSONObject) obj;
 
-        parsed_file.delete();
+        //parsed_file.delete(); //uncomment
 
         // Initialize the data structure that will be used to enter stuff into SQL database
         // Loop over all papers on this page
