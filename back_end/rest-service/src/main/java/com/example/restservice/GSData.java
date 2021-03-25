@@ -2,6 +2,8 @@ package com.example.restservice;
 
 //import java.io.*;
 import org.json.*;
+
+import java.util.ArrayList;
 //import org.json.simple.JSONObject;
 
 public class GSData {
@@ -10,8 +12,10 @@ public class GSData {
 	public int year = 0;
 	public String summary = "";
 	public String queryUrl;
-	public String[] authors;
-	public String[] author_urls;
+	//public String[] authors;
+	//public String[] author_urls;
+	public ArrayList<String> authors;
+	public ArrayList<String> author_urls;
 	public GSData[] citers = new GSData[0];
 	public String doc_url;
 	public String source_url;
@@ -54,14 +58,15 @@ public class GSData {
 		url += "&as_sdt=5,43&sciodt=0,43&hl=en";
 		return url;
 	}
-	public String toJSON(GSData[] children){
+	//~String
+	public JSONObject toJSON(GSData[] children){
 		JSONObject[] childjson = new JSONObject[children.length];
 		for(int i = 0; i < children.length; i++){
 			//String[] other_authors = new String[children[i].authors.length];
 			JSONObject jtemp = new JSONObject();
-			for(int j = 0; j < children[i].authors.length; j++){
+			for(int j = 0; j < children[i].authors.size(); j++){
 				try {
-					jtemp.put(children[i].authors[j], children[i].author_urls[j]);
+					jtemp.put(children[i].authors.get(j), children[i].author_urls.get(j));
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -89,7 +94,8 @@ public class GSData {
 		} catch (JSONException e){
 			e.printStackTrace();
 		} finally {
-			return jsonResp.toString();
+			//~return jsonResp.toString();
+			return jsonResp;
 		}
 	}
 }

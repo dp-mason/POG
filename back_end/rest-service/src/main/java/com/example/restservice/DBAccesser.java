@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+//import mysql;
 
 public class DBAccesser {
 	private Connection conn;
@@ -21,16 +22,20 @@ public class DBAccesser {
 		Connection conn = null;
 		
 		try {
-		    
+		    String driver ="com.mysql.cj.jdbc.Driver";
+
 			String url = "jdbc:mysql://localhost:3308/pog";
 		    String user      = "root";
 		    String password  = "dataLynx5!";
-		 
+		 	Class.forName(driver);
 		    // create a connection to the database
 		    conn = DriverManager.getConnection(url, user, password);
 		} 
-		
-		catch(SQLException e) {
+		catch(SQLException e){
+			System.out.println("Something went wrong1");
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) { //SQLException e,
 			System.out.println("Something went wrong");
 		   System.out.println(e.getMessage());
 		} 
@@ -131,14 +136,21 @@ public class DBAccesser {
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
-				cids.add(rs.getInt("citer_id"));
+				cids.add(new Integer(rs.getInt("citer_id")));
 			}
 		}
 		catch (SQLException e){
 			e.printStackTrace();
 		}
 		finally {
-			return ((Integer[]) cids.toArray());
+			System.out.println("here");
+			//Integer[] temp = ((Integer[]) cids.toArray());
+			Integer[] temp = new Integer[cids.size()];
+			for (int i = 0; i < cids.size(); i++){
+				temp[i]  = cids.get(i);
+
+			}
+			return temp;
 		}
 
 	}
@@ -161,8 +173,17 @@ public class DBAccesser {
 			e.printStackTrace();
 		}
 		finally {
-			gsd.authors = (String[]) authors.toArray();
-			gsd.author_urls = (String[])  author_urls.toArray();
+			//String[] author_temp = new String[authors.size()];
+			//String[] author_url_temp = new String[author_urls.size()];
+			//gsd.authors = (String[]) authors.toArray();
+			//gsd.author_urls = (String[])  author_urls.toArray();
+			gsd.authors = authors;
+			gsd.author_urls = author_urls;
+			/*for(int i = 0; i < authors.size(); i++){
+				gsd.authors.add(authors.get(i));
+				gsd.author_urls.add(author_urls.get(i));
+			}*/
+
 			return;
 		}
 	}

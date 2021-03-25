@@ -2,9 +2,10 @@ package com.example.restservice;
 
 import org.apache.commons.io.IOUtils;
 //import org.json.JSONException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONObject;
+//~import org.json.simple.JSONObject;
+//~import org.json.simple.parser.JSONParser;
+//~import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
@@ -30,7 +31,8 @@ public class ScholarHtmlController {
     // Eventually we want this to return a JSON with parsed paper info, but for now "void" is ok
     @CrossOrigin//(origins = "chrome-extension://koinmoamanbigcmkkamgnagpaecopkoc/")
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
-    public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, ParseException, InterruptedException {
+    //~ParseException
+    public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
         // TODO: if it is a "cited by" page.
         String id = "raw_html"; //XXX: badbad fix this soon
@@ -96,16 +98,20 @@ public class ScholarHtmlController {
         }
         dba.closeconnection();
 
-        String result_json_text = parent.toJSON(gsdArr);
-
-        System.out.println("Result: " + result_json_text);
+        //~String result_json_text = parent.toJSON(gsdArr);
+        JSONObject result_json_gsd = parent.toJSON(gsdArr); //~
+        System.out.println("b4 result");
+        System.out.println("Result: " + result_json_gsd.toString());
         //System.exit(0);
 
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader(parsed_output_name));
+        //~JSONParser parser = new JSONParser();
+        //~Object obj = parser.parse(new FileReader(parsed_output_name));
         //Object obj = parser.parse(result_json_text);
 
-        JSONObject result_json = (JSONObject) obj;
+        //~JSONObject result_json = (JSONObject) obj;
+
+        //~JSONParser parser = new JSONParser();
+        //~Object obj = parser.parse(new FileReader(parsed_output_name));
 
         //parsed_file.delete(); //uncomment
 
@@ -115,6 +121,7 @@ public class ScholarHtmlController {
 
         // send back the JSON file that was generated to the user
         //InputStream raw_json = getClass().getResourceAsStream(parsed_output_name);
-        return result_json;
+        //~return result_json;
+        return result_json_gsd;
     }
 }
