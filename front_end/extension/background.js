@@ -6,6 +6,20 @@
 //    return;
 //}
 
+
+//catches messages from graph js
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(sender.tab ?
+                  "from a content script:" + sender.tab.url :
+                  "from the extension");
+        //check if this is a url
+        var cited_by_url= request.url;
+        sendResponse({search: "goodbye"});
+    }
+  );
+
+
 chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.executeScript( {file: "/d3.js"});
     //chrome.tabs.executeScript( {file: "reviews.js" });
