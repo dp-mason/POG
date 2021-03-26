@@ -70,7 +70,7 @@ public class DBAccesser {
 		int year = -1;
 
 		try {
-			String sql = "SELECT * FROM pog.papers where papers.paperid = ?";
+			String sql = "SELECT * FROM pog.papers where papers.paper_id = ?";
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
 			stmt.setInt(1, idNumber);
 			ResultSet rs = stmt.executeQuery();
@@ -84,7 +84,9 @@ public class DBAccesser {
 				summary = rs.getString("summary");
 				cited_by_url = rs.getString("cited_by_url");
 			}
-			gsd = new GSData(title, year);
+			//gsd = new GSData(title, year);
+			gsd.title = title;
+			gsd.year = year;
 			gsd.id = id;
 			gsd.summary = summary;
 			gsd.doc_url = doc_url;

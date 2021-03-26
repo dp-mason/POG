@@ -101,6 +101,7 @@ public class ScholarHtmlController {
         //~String result_json_text = parent.toJSON(gsdArr);
         JSONObject result_json_gsd = parent.toJSON(gsdArr); //~
         System.out.println("b4 result");
+
         System.out.println("Result: " + result_json_gsd.toString());
         //System.exit(0);
 
