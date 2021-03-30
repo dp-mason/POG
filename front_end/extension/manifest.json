@@ -2,7 +2,7 @@
     "manifest_version": 2,
   
     "name": "Papers on a Graph",
-    "description": "Interavtive citation relationship explorer",
+    "description": "Interactive citation relationship explorer",
     "version": "1.0",
   
     "browser_action": {

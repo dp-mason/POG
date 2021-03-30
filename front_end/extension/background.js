@@ -7,17 +7,43 @@
 //}
 
 
+var cited_by_url;
+
 //catches messages from graph js
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-                  "from a content script:" + sender.tab.url :
-                  "from the extension");
-        //check if this is a url
-        var cited_by_url= request.url;
-        sendResponse({search: "goodbye"});
-    }
-  );
+// chrome.runtime.onMessage.addListener(
+// function(request, sender, sendResponse) {
+//         sendResponse({search: "goodbye"});
+//         chrome.tabs.update(sender.tab.id, request.url);
+        
+//         //check if this is a url
+//         if(request.url.startsWith("https://scholar.google.com")){
+//            cited_by_url = request.url;
+//         }
+
+        
+//     }
+//   );
+
+chrome.runtime.onConnect.addListener(function(port) {
+    console.assert(port.name == "here");
+    port.onMessage.addListener(function(msg) {
+        if (msg.url.startsWith("https://scholar.google.com")){
+            cited_by_url = msg.url;
+        }
+        console.log(msg.url);
+        //fetch children
+        port.postMessage({children: "cited by"});
+    });
+    //get html info?
+    // chrome.tabs.query({active: true}, function(tabs) {
+    //     chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
+    //             console.log(response.answer);
+    //             return;
+    //         }
+    //     );
+    // });
+  });
+
 
 
 chrome.browserAction.onClicked.addListener(function(tab) {
@@ -57,8 +83,8 @@ chrome.runtime.onMessage.addListener((msg) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    var searchButton = document.getElementById('search');
-    searchButton.addEventListener('click', function() {
+    // var searchButton = document.getElementById('search');
+    // searchButton.addEventListener('click', function() {
             /*Python version
         def scholar_url_maker(srch_str):
             terms_str = srch_str.replace(" ", "+")
@@ -68,14 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return req_url
         */
 
-        console.log("Beginning Request...\n");
+        // console.log("Beginning Request...\n");
 
-        var srch_str = document.getElementById("searchterms").value;
+        // var srch_str = document.getElementById("searchterms").value;
 
-        var before_terms = "http://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q=";
-        var terms_str = srch_str.replace(" ", "+");
-        var after_terms = "&btnG=";
-        var req_url = before_terms + terms_str + after_terms;
+        // var before_terms = "http://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q=";
+        // var terms_str = srch_str.replace(" ", "+");
+        // var after_terms = "&btnG=";
+        // var req_url = before_terms + terms_str + after_terms;
 
         //var gs_request = new XMLHttpRequest();                
         //gs_request.open('GET', req_url, false);
@@ -170,15 +196,15 @@ document.addEventListener('DOMContentLoaded', function() {
         //}, function(tab){});
 
         // sends message to the scholar tab asking for it to send its document.
-        var raw_html;
-        chrome.tabs.query({active: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
-                    console.log(response.answer);
-                    return;
-                }
-            );
-        });
-        // this triggers the schloar tab to send back all of the html data in a message it sends back to us
-        return;    
-    }, false);
+    //     var raw_html;
+    //     // chrome.tabs.query({active: true}, function(tabs) {
+    //     //     chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
+    //     //             console.log(response.answer);
+    //     //             return;
+    //     //         }
+    //     //     );
+    //     // });
+    //     // this triggers the schloar tab to send back all of the html data in a message it sends back to us
+    //     return;    
+    // }, false);
 }, false);

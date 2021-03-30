@@ -31,6 +31,7 @@
     var link = svg.selectAll(".link"),
         node = svg.selectAll(".node");
     
+    var port = chrome.runtime.connect({name: "here"});
     
     // d3.json("graph.json", function(error, json) {
     //   if (error) throw error;
@@ -192,16 +193,6 @@
     
       if(document.getElementById("expand").checked  ){
     
-        // // Event listener for msg from background script
-        // // Msg has source and list of children
-        // //since we clicked, msg should just be list of children
-        // window.addEventListener('message', function(e) {
-        //     d = e.data[0]
-        //     e.data[1]
-        //   });
-        
-        
-        
     
         if (d.children) {
           d._children=d.children;
@@ -213,13 +204,19 @@
     
         //this needs to be the event listener actually
         if(!d.children && !d._children){
-          chrome.runtime.sendMessage({url: d.cited_by_url}, function(response) {
-            console.log(response.search);
+          // chrome.runtime.sendMessage({url: d.cited_by_url}, function(response) {
+          //   console.log(response.search);
+          // });
+          var child;
+          port.postMessage({url: d.cited_by_url});
+          port.onMessage.addListener(function(msg) {
+            console.log(msg.children);
+            child= msg.children;
           });
           var newchild= 
                 {
                     "summary_short": "newchild summary",
-                    "name": "New Child" + String(counter),
+                    "name": child + String(counter),
                     //"children": [],
                     "year": 2021
                 };
