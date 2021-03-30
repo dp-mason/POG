@@ -7,8 +7,6 @@
 //}
 
 
-var cited_by_url;
-
 //catches messages from graph js
 // chrome.runtime.onMessage.addListener(
 // function(request, sender, sendResponse) {
@@ -24,16 +22,16 @@ var cited_by_url;
 //     }
 //   );
 
-chrome.runtime.onConnect.addListener(function(port) {
-    console.assert(port.name == "here");
-    port.onMessage.addListener(function(msg) {
-        if (msg.url.startsWith("https://scholar.google.com")){
-            cited_by_url = msg.url;
-        }
-        console.log(msg.url);
-        //fetch children
-        port.postMessage({children: "cited by"});
-    });
+// chrome.runtime.onConnect.addListener(function(port) {
+//     console.assert(port.name == "here");
+//     port.onMessage.addListener(function(msg) {
+//         if (msg.url.startsWith("https://scholar.google.com")){
+//             cited_by_url = msg.url;
+//         }
+//         console.log(msg.url);
+//         //fetch children
+//         port.postMessage({children: "cited by"});
+//     });
     //get html info?
     // chrome.tabs.query({active: true}, function(tabs) {
     //     chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
@@ -42,20 +40,43 @@ chrome.runtime.onConnect.addListener(function(port) {
     //         }
     //     );
     // });
-  });
 
 
+var cited_by_url;
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.executeScript( {file: "/d3.js"});
-    //chrome.tabs.executeScript( {file: "reviews.js" });
-});
+
+// chrome.browserAction.onClicked.addListener(function(tab) {
+//     chrome.tabs.executeScript( {file: "/d3.js"});
+//     //chrome.tabs.executeScript( {file: "reviews.js" });
+// });
 
 // catches messages sent from the scholar script, currently forwards data to our server for parsing
-chrome.runtime.onMessage.addListener((msg) => {
-    if(msg.type == "html"){
-        raw_html = msg.html;
-        console.log('recved html msg', raw_html);
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+    if(request.type == "url"){
+       
+        if (request.url.startsWith("https://scholar.google.com")){
+            cited_by_url = request.url;
+        }
+        console.log(request.url);
+        sendResponse({children: "child"});
+n
+
+        //fetch children
+        chrome.tabs.update(sender.tab.id, request.url);
+
+        // sends message to the scholar tab asking for it to send its document.
+        var raw_html;
+        chrome.tabs.query({active: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
+                    console.log(response.answer);
+                    return;
+                }
+            );
+        });
+    }
+    else if(request.type == "html"){
+        raw_html = request.html;
+        console.log('received html msg', raw_html);
         // send this raw html to your server, wait for response, then update the user with info
 
         // send raw html to our server for parsing
@@ -80,6 +101,8 @@ chrome.runtime.onMessage.addListener((msg) => {
             console.log(response.json());
         });
     }
+    
+    
 });
 
 document.addEventListener('DOMContentLoaded', function() {

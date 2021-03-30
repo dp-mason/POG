@@ -30,9 +30,7 @@
     
     var link = svg.selectAll(".link"),
         node = svg.selectAll(".node");
-    
-    var port = chrome.runtime.connect({name: "here"});
-    
+        
     // d3.json("graph.json", function(error, json) {
     //   if (error) throw error;
     //   root = json;
@@ -202,16 +200,11 @@
           d._children= null;
         }
     
-        //this needs to be the event listener actually
         if(!d.children && !d._children){
-          // chrome.runtime.sendMessage({url: d.cited_by_url}, function(response) {
-          //   console.log(response.search);
-          // });
           var child;
-          port.postMessage({url: d.cited_by_url});
-          port.onMessage.addListener(function(msg) {
-            console.log(msg.children);
-            child= msg.children;
+          chrome.runtime.sendMessage({url: d.cited_by_url, type: "url"}, function(response){
+            console.log(response.children);
+            child= response.children;
           });
           var newchild= 
                 {
