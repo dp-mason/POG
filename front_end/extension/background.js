@@ -7,21 +7,6 @@
 //}
 
 
-//catches messages from graph js
-// chrome.runtime.onMessage.addListener(
-// function(request, sender, sendResponse) {
-//         sendResponse({search: "goodbye"});
-//         chrome.tabs.update(sender.tab.id, request.url);
-        
-//         //check if this is a url
-//         if(request.url.startsWith("https://scholar.google.com")){
-//            cited_by_url = request.url;
-//         }
-
-        
-//     }
-//   );
-
 // chrome.runtime.onConnect.addListener(function(port) {
 //     console.assert(port.name == "here");
 //     port.onMessage.addListener(function(msg) {
@@ -41,29 +26,39 @@
     //     );
     // });
 
-
-var cited_by_url;
-
-
 // chrome.browserAction.onClicked.addListener(function(tab) {
 //     chrome.tabs.executeScript( {file: "/d3.js"});
 //     //chrome.tabs.executeScript( {file: "reviews.js" });
 // });
 
 // catches messages sent from the scholar script, currently forwards data to our server for parsing
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if(request.type == "url"){
-       
-        if (request.url.startsWith("https://scholar.google.com")){
-            cited_by_url = request.url;
+var counter=0;
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+    
+    var citedby= [
+                {
+                    "summary_short": "newchild summary",
+                    "name": "child "+String(counter),
+                    //"children": [],
+                    "year": 2021
+                },
+                {
+                    "summary_short": "newchild 2 summary",
+                    "name": "child " +String (counter+1),
+                    //"children": [],
+                    "year": 2021
+                }]
+    counter= counter+2;
+    sendResponse({children: citedby});
+    if(msg.type == "url"){
+        if (!(msg.url.startsWith("https://scholar.google.com"))){
+           //error
         }
-        console.log(request.url);
-        sendResponse({children: "child"});
-n
+        console.log(msg.url);
 
-        //fetch children
-        chrome.tabs.update(sender.tab.id, request.url);
-
+        //cited by tab
+        chrome.tabs.update(sender.tab.id, msg.url);
+        
         // sends message to the scholar tab asking for it to send its document.
         var raw_html;
         chrome.tabs.query({active: true}, function(tabs) {
@@ -73,9 +68,14 @@ n
                 }
             );
         });
+        //do formatting??
+        var citedby= response.answer
+        //where we actually send them back
+        sendResponse({children: citedby});      
+
     }
-    else if(request.type == "html"){
-        raw_html = request.html;
+    else if(msg.type == "html"){
+        raw_html = msg.html;
         console.log('received html msg', raw_html);
         // send this raw html to your server, wait for response, then update the user with info
 

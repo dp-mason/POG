@@ -201,23 +201,19 @@
         }
     
         if(!d.children && !d._children){
-          var child;
+          var children;
           chrome.runtime.sendMessage({url: d.cited_by_url, type: "url"}, function(response){
-            console.log(response.children);
-            child= response.children;
-          });
-          var newchild= 
-                {
-                    "summary_short": "newchild summary",
-                    "name": child + String(counter),
-                    //"children": [],
-                    "year": 2021
-                };
-          addnew(d, newchild);
-          d.children=[newchild];
+              children= response.children;
+              console.log(response.children);
+                // for(n in children){
+                //   addnew(d, n);
+                // }
+              d.children=children;
+              update();
+            });
         }
-    
         update();
+ 
       }
     
       else if(document.getElementById("info").checked  ){
