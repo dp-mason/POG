@@ -21,9 +21,15 @@ chrome.runtime.onMessage.addListener((msg) => {
         // send raw html to our server for parsing
         // recv the result of the parsing and print it to the console
         const url = "http://localhost:8080/papers/submitPaper";
+        console.log("fetching");
+        myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'text/plain');
+        // const resp;
         fetch(url, {
             method : "POST",
             body: raw_html,
+            //headers: new Headers({'content-type': 'text/plain'})
+            //headers: new Headers({'content-type': 'application/json'})
             // -- or --
             // body : JSON.stringify({
             // user : document.getElementById('user').value,
@@ -31,14 +37,27 @@ chrome.runtime.onMessage.addListener((msg) => {
             // })
         })
         .then(function(response) {
+            /*if(response.ok){
+                console.log("got something");
+            }
             console.log(response.headers.get('Content-Type'));
         
             console.log(response.status);
             console.log(response.statusText);
             console.log(response.type);
             console.log(response.url);
+            //console.log(response.text());
+            //console.log(response.json());
+            //response.json();
+            //response.text();*/
             console.log(response.json());
+            //response.json();
+        //}).then(data => {
+          //  console.log(data)
+        }).catch(error => {
+            console.log(error);
         });
+        
     }
 });
 
@@ -159,7 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
         var raw_html;
         chrome.tabs.query({active: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {msg:"html_request"}, function(response) {
+                    
                     console.log(response.answer);
+                    
                     return;
                 }
             );

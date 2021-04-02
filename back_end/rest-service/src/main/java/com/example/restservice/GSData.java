@@ -21,15 +21,28 @@ public class GSData {
 	public String source_url;
 	public String cited_by_url;
 	public int cited_by_count;
+	public GSData[] fake;
 
 	GSData(){
 		this.title = "";
 		this.year = -1;
+		/*fake = new GSData[3];
+		try {
+			fake[0] = new JSONObject().put("author", 5);
+			fake[1] = new JSONObject().put("bogus", "fiddlefaaddle").put("foo", "baz");
+			fake[2] = new JSONObject().put("gyj","cgh");
+		} catch (JSONException e){
+			e.printStackTrace();
+		}*/
 	}
 
 	GSData(String title, int year){
 		this.title = title;
 		this.year = year;
+	}
+
+	public int getId(){
+		return this.id;
 	}
 	
 	public String makeQueryUrl() {
@@ -58,6 +71,11 @@ public class GSData {
 		url += "&as_sdt=5,43&sciodt=0,43&hl=en";
 		return url;
 	}
+
+	public void setChildren(GSData[] children){
+		fake = children;
+	}
+
 	//~String
 	public JSONObject toJSON(GSData[] children){
 		JSONArray childjson = new JSONArray();

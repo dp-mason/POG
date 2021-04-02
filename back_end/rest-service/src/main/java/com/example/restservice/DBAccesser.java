@@ -56,6 +56,54 @@ public class DBAccesser {
 		}}
 	}
 
+	public int getPaperId(String title){
+		int id = -1;
+
+		try {
+			String regex = "%" + title.replaceAll(" ", "%") + "%";
+			String sql = "SELECT * FROM pog.papers where papers.title like ?";
+			PreparedStatement stmt = this.conn.prepareStatement(sql);
+			stmt.setString(1, regex);
+
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				id = rs.getInt("paper_id");
+			}
+
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		finally {
+			return id;
+		}
+	}
+
+	public int getPaperId(String title, int year){
+		int id = -1;
+
+		try {
+			String regex = "%" + title.replaceAll(" ", "%") + "%";
+			String sql = "SELECT * FROM pog.papers where papers.title like ? and year = ?";
+			PreparedStatement stmt = this.conn.prepareStatement(sql);
+			stmt.setString(1, regex);
+			stmt.setInt(2, year);
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				id = rs.getInt("paper_id");
+			}
+
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		finally {
+			return id;
+		}
+	}
+
 	public void getPaperRow(int idNumber, GSData gsd){
 		//GSData gsd = new GSData();
 		//String[] authors = {};

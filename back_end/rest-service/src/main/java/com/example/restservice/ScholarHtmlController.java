@@ -2,13 +2,21 @@ package com.example.restservice;
 
 import org.apache.commons.io.IOUtils;
 //import org.json.JSONException;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+//import org.json.simple.*;
 //~import org.json.simple.JSONObject;
 //~import org.json.simple.parser.JSONParser;
 //~import org.json.simple.parser.ParseException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.io.*;
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicLong;
 
 @CrossOrigin//(origins = "chrome-extension://koinmoamanbigcmkkamgnagpaecopkoc/")
@@ -32,7 +40,9 @@ public class ScholarHtmlController {
     @CrossOrigin//(origins = "chrome-extension://koinmoamanbigcmkkamgnagpaecopkoc/")
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
     //~ParseException
-    public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
+    public @ResponseBody ResponseEntity<GSData> Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
+    //~public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
+    //~public @ResponseBody String Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
         // TODO: if it is a "cited by" page.
         String id = "raw_html"; //XXX: badbad fix this soon
@@ -82,7 +92,12 @@ public class ScholarHtmlController {
         }
 
         int parentId = 175;
+        String parentTitle = "What Every Programmer Needs to Know about Security (Advances in Information Security)";
+        //int parentYear = 2006;
         DBAccesser dba = new DBAccesser();
+        if(dba.getPaperId(parentTitle) == -1){
+            return null;
+        }
         Integer[] cids = dba.getCitedIds(parentId);
         GSData parent = new GSData();
         dba.getPaperRow(parentId, parent);
@@ -98,12 +113,30 @@ public class ScholarHtmlController {
         }
         dba.closeconnection();
 
+        parent.setChildren(gsdArr);
         //~String result_json_text = parent.toJSON(gsdArr);
         JSONObject result_json_gsd = parent.toJSON(gsdArr); //~
         System.out.println("b4 result");
 
         System.out.println("Result: " + result_json_gsd.toString());
         //System.exit(0);
+        /*
+        try {
+            JSONArray tmpj = (JSONArray) result_json_gsd.get("papers");
+            for (int i= 0; i < tmpj.length(); i++){
+                //System.out.println(tmpj.get(i).toString());
+                Iterator<String> keys =((JSONObject)tmpj.get(i)).keys();
+                while (keys.hasNext()){
+                    String key = keys.next();
+                    System.out.println(key);
+                }
+            }
+
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        */
 
         //~JSONParser parser = new JSONParser();
         //~Object obj = parser.parse(new FileReader(parsed_output_name));
@@ -123,6 +156,15 @@ public class ScholarHtmlController {
         // send back the JSON file that was generated to the user
         //InputStream raw_json = getClass().getResourceAsStream(parsed_output_name);
         //~return result_json;
-        return result_json_gsd;
+        //~return result_json_gsd.toString();
+        //!return result_json_gsd;
+        JSONObject js = new JSONObject();
+        try {
+            js.put("id", 1);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        //return js; //new ResponseEntity<>("Hello", HttpStatus.OK);
+        return new ResponseEntity<GSData>(parent, HttpStatus.OK);
     }
 }
