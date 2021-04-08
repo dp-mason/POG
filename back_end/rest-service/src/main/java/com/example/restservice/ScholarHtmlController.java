@@ -66,6 +66,7 @@ public class ScholarHtmlController {
 
         // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or native backend Java parsing
         // call the python program to parse the file (file name as command line argument?)
+        // Runs the proper shell script depending on the OS it is running on
         System.out.println(tmp_dir);
         if (OSValidator.isUnix()) {
             Runtime.getRuntime().exec(tmp_dir + "parse.sh");
