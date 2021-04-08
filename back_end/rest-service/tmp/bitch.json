@@ -1,0 +1,175 @@
+{
+    "id": "bitch",
+    "papers": [
+        {
+            "authors_and_links": {
+                "A Vespignani": "https://scholar.google.comhttps://scholar.google.com/citations?user=U3CXAPsAAAAJ&hl=en&oi=sra",
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://www.researchgate.net/profile/Katy_Borner/publication/220141972_Network_science/links/00b7d529ceaa1097c5000000.pdf",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "f0Kgtf5gNsgJ",
+            "source_url": "https://www.researchgate.net/profile/Katy_Borner/publication/220141972_Network_science/links/00b7d529ceaa1097c5000000.pdf",
+            "summary_short": "This chapter reviews the highly interdisciplinary field of network science, which is concerned with the study of networks, be they biological, technological, or scholarly in character. It contrasts, compares, and integrates techniques and algorithms developed in disciplines as\u00a0\u2026",
+            "title_short": "Network science",
+            "year": 2007
+        },
+        {
+            "authors_and_links": {
+                "CT Bergstrom": "https://scholar.google.comhttps://scholar.google.com/citations?user=upKiqHMAAAAJ&hl=en&oi=sra",
+                "JA Evans": "https://scholar.google.comhttps://scholar.google.com/citations?user=kV4N4zoAAAAJ&hl=en&oi=sra",
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra",
+                "S Fortunato": "https://scholar.google.comhttps://scholar.google.com/citations?user=NDrCCokAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc5949209/",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "t_kek5tGz1kJ",
+            "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc5949209/",
+            "summary_short": "BACKGROUND The increasing availability of digital data on scholarly inputs and outputs\u2014from research funding, productivity, and collaboration to paper citations and scientist mobility\u2014offers unprecedented opportunities to explore the structure and evolution of science. The\u00a0\u2026",
+            "title_short": "Science of science",
+            "year": 2018
+        },
+        {
+            "authors_and_links": {
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://cns.iu.edu/images/pres/2010-borner-nwb-author-copy.pdf",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "CV9aSMn4vEcJ",
+            "source_url": "https://cns.iu.edu/images/pres/2010-borner-nwb-author-copy.pdf",
+            "summary_short": "The enormous increase in digital scholarly data and computing power combined with recent advances in text mining, linguistics, network science, and scientometrics make it possible to scientifically study the structure and evolution of science on a large scale. This paper\u00a0\u2026",
+            "title_short": "Rete-netzwerk-red: analyzing and visualizing scholarly networks using the Network Workbench Tool",
+            "year": 2010
+        },
+        {
+            "authors_and_links": {
+                "DR Amancio": "https://scholar.google.comhttps://scholar.google.com/citations?user=WHdCNq0AAAAJ&hl=en&oi=sra",
+                "FN Silva": "https://scholar.google.comhttps://scholar.google.com/citations?user=fhWJEysAAAAJ&hl=en&oi=sra",
+                "LF Costa": "https://scholar.google.comhttps://scholar.google.com/citations?user=YcAavdAAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://arxiv.org/pdf/1506.05690",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "NK4f1HclJQIJ",
+            "source_url": "https://arxiv.org/pdf/1506.05690",
+            "summary_short": "\u2026 In a similar fashion, science maps can also be constructed by using self-organizing maps in which\nscientific domains are mapped to a 2D space according to a neural network through a Hebbian\nlearning process (Skupin, Biberstine, & B\u00f6rner, 2013). While science maps are\u00a0\u2026 \n",
+            "title_short": "Using network science and text analytics to produce surveys in a scientific topic",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://129.79.36.116/docs/publications/2007-borner-making-epb.pdf",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "5EVj-VOtPy8J",
+            "source_url": "https://129.79.36.116/docs/publications/2007-borner-making-epb.pdf",
+            "summary_short": "In this paper I discuss and compare different approaches to collecting, interlinking, organizing, and making sense of scholarly knowledge and expertise in a comprehensive and timely fashion.'Comprehensive'refers to the need for collecting and interlinking\u00a0\u2026",
+            "title_short": "\u2026\u00a0sense of mankind's scholarly knowledge and expertise: collecting, interlinking, and organizing what we know and different approaches to mapping (network) science",
+            "year": 2007
+        },
+        {
+            "authors_and_links": {
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://cns.iu.edu/docs/presentations/2011-borner-unt-atlas.pdf",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "Kb0NhOyMdmkJ",
+            "source_url": "https://cns.iu.edu/docs/presentations/2011-borner-unt-atlas.pdf",
+            "summary_short": "3D nD Physically-based Abstract space Accuracy is measurable Accuracy is difficult Trade-offs have more to do with granularity Trade-offs indirectly affect accuracy 2-D projections are very accurate at local levels 2-D projections neglect a great deal of data Centuries of\u00a0\u2026",
+            "title_short": "Atlas of science",
+            "year": 2010
+        },
+        {
+            "authors_and_links": {
+                "HJ Falk\u2010Krzesinski": "https://scholar.google.comhttps://scholar.google.com/citations?user=NyEIp24AAAAJ&hl=en&oi=sra",
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://ascpt.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-8062.2010.00223.x",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "cwM7Cerx3r8J",
+            "source_url": "https://ascpt.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-8062.2010.00223.x",
+            "summary_short": "Please review our Terms and Conditions of Use and check box below to share full-text version \nof article\u00a0\u2026 I have read and accept the Wiley Online Library Terms and Conditions of Use\u00a0\u2026 \nUse the link below to share a full-text version of this article with your friends and colleagues\u00a0\u2026",
+            "title_short": "Advancing the science of team science",
+            "year": 2010
+        },
+        {
+            "authors_and_links": {
+                "AM Zoss": "https://scholar.google.comhttps://scholar.google.com/citations?user=-6yoDlIAAAAJ&hl=en&oi=sra",
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra",
+                "R Klavans": "https://scholar.google.comhttps://scholar.google.com/citations?user=aorDhxQAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039464",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "DXkL63IqMk8J",
+            "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039464",
+            "summary_short": "Global maps of science can be used as a reference system to chart career trajectories, the location of emerging research frontiers, or the expertise profiles of institutes or nations. This paper details data preparation, analysis, and layout performed when designing and\u00a0\u2026",
+            "title_short": "Design and update of a classification system: The UCSD map of science",
+            "year": 2012
+        },
+        {
+            "authors_and_links": {
+                "A Maltese": "https://scholar.google.comhttps://scholar.google.com/citations?user=48VElWEAAAAJ&hl=en&oi=sra",
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "https://cns.iu.edu/docs/publications/2015-borner-investigating.pdf",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "S21nNgRqaCoJ",
+            "source_url": "https://cns.iu.edu/docs/publications/2015-borner-investigating.pdf",
+            "summary_short": "In the information age, a person's ability to read and make data visualizations is nearly as important as being able to read and write text. This article reports the results of a multi-phase study conducted in informal learning environments in three US science museums. The goal\u00a0\u2026",
+            "title_short": "Investigating aspects of data visualization literacy using 20 information visualizations and 273 science museum visitors",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "K B\u00f6rner": "https://scholar.google.comhttps://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 0,
+            "cited_by_url": "",
+            "doc_url": "",
+            "referenced_by": [
+                "NoneExist"
+            ],
+            "scholar_id": "GIUtsvHowhwJ",
+            "source_url": "https://books.google.com/books?hl=en&lr=&id=eLofEAAAQBAJ&oi=fnd&pg=PR11&dq=network+science+borner&ots=_sj8K6S4lW&sig=u_c7to7_bwaB8lw5CuKrsFRk_Ag",
+            "summary_short": "Science maps that can help us understand and navigate the immense amount of results generated by today's science and technology. Cartographic maps have guided our explorations for centuries, allowing us to navigate the world. Science maps have the\u00a0\u2026",
+            "title_short": "Atlas of science: Visualizing what we know",
+            "year": 2010
+        }
+    ]
+}
