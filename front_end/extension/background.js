@@ -313,6 +313,7 @@ function flatten(root) {
 
 // catches messages sent from the scholar script, currently forwards data to our server for parsing
 var counter=0;
+var citedby;
 function getChildren(url){
     if (!(String(url).startsWith("https://scholar.google.com"))){
             //error
@@ -342,7 +343,7 @@ function getChildren(url){
     
     //FIRST check database if we have it
     //url is IP adress of host database/papers/findPaper
-    var citedby;
+   // var citedby;
     // var inDB= false;
     // const ipurl =  "http://localhost:8080/papers/submitPaper";
     // fetch(ipurl, {
