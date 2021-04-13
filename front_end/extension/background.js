@@ -25,6 +25,10 @@ chrome.runtime.onMessage.addListener((msg) => {
         myHeaders = new Headers();
         myHeaders.append('Content-Type', 'text/plain');
         // const resp;
+        
+        raw_html="pogdb*"+raw_html;
+        console.log(raw_html);
+        /* uncooment!!!!!!!!!!!!!!!!!!!!!!!1
         fetch(url, {
             method : "POST",
             body: raw_html,
@@ -37,19 +41,19 @@ chrome.runtime.onMessage.addListener((msg) => {
             // })
         })
         .then(function(response) {
-            /*if(response.ok){
-                console.log("got something");
-            }
-            console.log(response.headers.get('Content-Type'));
+            //if(response.ok){
+              //  console.log("got something");
+            //}
+            //console.log(response.headers.get('Content-Type'));
         
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.type);
-            console.log(response.url);
+            //console.log(response.status);
+            //console.log(response.statusText);
+            //console.log(response.type);
+            //console.log(response.url);
             //console.log(response.text());
             //console.log(response.json());
             //response.json();
-            //response.text();*/
+            //response.text();
             console.log(response.json());
             //response.json();
         //}).then(data => {
@@ -57,7 +61,17 @@ chrome.runtime.onMessage.addListener((msg) => {
         }).catch(error => {
             console.log(error);
         });
+        */
+        //const jsoninfo = '{"id":"175","papers":[{"doc_url":"tufudykt","cited_by_count":5,"cited_by_url":"1111111111","year":2003,"summary_short":"","title_short":"A+ Certification Core Hardware (Text & Lab Manual)","authors_and_links":{"Charles J. Brooks":"cbrooks.com"},"referenced_by":[],"scholar_id":"172","source_url":""},{"doc_url":"twoooooo","cited_by_count":3,"cited_by_url":"222222222222","year":2007,"summary_short":"This panel session discusses performance engineering practices in industry. Presentations in the session will explore the use of lightweight techniques and approaches in order to permit the cost effective and rapid adoption of performance modeling research by large industrial software systems.","title_short":"Performance engineering in industry: current practices and adoption challenges","authors_and_links":{"Parminder Flora":"pflora.com","Ahmed E. Hassan":""},"referenced_by":[],"scholar_id":"173","source_url":"s1ource"},{"doc_url":"threeeeeeeeeeee","cited_by_count":2,"cited_by_url":"333333","year":2007,"summary_short":"Motivation: Experimental techniques in proteomics have seen rapid development over the last few years. Volume and complexity of the data have both been growing at a similar rate. Accordingly, data management and analysis are one of the major challenges in proteomics. Flexible algorithms are required to handle changing experimental setups and to ass","title_short":"TOPP---the OpenMS proteomics pipeline","authors_and_links":{"Clemens Grapl":"cGrapl.com","Marc Sturm":"mstrum.com","Eva Lange":"elange.com","Nico Pfeifer":"npfeifer.com","Oliver Kohlbacher":"okohlbacher.com","Knut Reinert":"kreinert.com","Ole Schulz-Trieglaff":"olest.com"},"referenced_by":[],"scholar_id":"178","source_url":"s3ource"},{"doc_url":"fouuuuurrrr","cited_by_count":4,"cited_by_url":"44444444","year":2007,"summary_short":"","title_short":"Podcasting for Profit: A Proven 10-Step Plan for Generating Income Through Audio and Video Podcasting","authors_and_links":{"Allan Hunkin":"ahunkin.com"},"referenced_by":[],"scholar_id":"187","source_url":"s4ource"}]}';
         
+        /*raw_html = "pogdb*"+raw_html;*/
+        fetch("http://localhost:8080/papers/findPaper", {
+            method : "POST",
+            body: "rnDgM4giVJIJ"
+        })
+        .then(function(response) {
+            console.log(response.json());
+        });
     }
 });
 

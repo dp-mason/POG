@@ -3,10 +3,24 @@
     "papers": [
         {
             "authors_and_links": {
+                "AL Barab\u00e1si": "https://scholar.google.com/citations?user=vsj2slIAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 2920,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=10544090595962417326&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://royalsocietypublishing.org/doi/full/10.1098/rsta.2012.0375",
+            "referenced_by": [],
+            "scholar_id": "rnDgM4giVJIJ",
+            "source_url": "https://royalsocietypublishing.org/doi/full/10.1098/rsta.2012.0375",
+            "summary_short": "Professor Barab\u00e1si's talk described how the tools of network science can help understand the Web's structure, development and weaknesses. The Web is an information network, in which the nodes are documents (at the time of writing over one trillion of them), connected\u00a0\u2026",
+            "title_short": "Network science",
+            "year": 2013
+        },
+        {
+            "authors_and_links": {
                 "A Vespignani": "https://scholar.google.com/citations?user=U3CXAPsAAAAJ&hl=en&oi=sra",
                 "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
             },
-            "cited_by_count": 392,
+            "cited_by_count": 397,
             "cited_by_url": "https://scholar.google.com/scholar?cites=14426825103413101183&as_sdt=5,43&sciodt=0,43&hl=en",
             "doc_url": "https://www.researchgate.net/profile/Katy_Borner/publication/220141972_Network_science/links/00b7d529ceaa1097c5000000.pdf",
             "referenced_by": [],
@@ -17,139 +31,121 @@
             "year": 2007
         },
         {
-            "authors_and_links": {
-                "CT Bergstrom": "https://scholar.google.com/citations?user=upKiqHMAAAAJ&hl=en&oi=sra",
-                "JA Evans": "https://scholar.google.com/citations?user=kV4N4zoAAAAJ&hl=en&oi=sra",
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra",
-                "S Fortunato": "https://scholar.google.com/citations?user=NDrCCokAAAAJ&hl=en&oi=sra"
-            },
-            "cited_by_count": 422,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=6471468823556848055&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc5949209/",
+            "authors_and_links": {},
+            "cited_by_count": 539,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=16586050597114952056&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "http://www.ee.cityu.edu.hk/~gchen/pdf/WC_in_NetworkScience2009.pdf",
             "referenced_by": [],
-            "scholar_id": "t_kek5tGz1kJ",
-            "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc5949209/",
-            "summary_short": "BACKGROUND The increasing availability of digital data on scholarly inputs and outputs\u2014from research funding, productivity, and collaboration to paper citations and scientist mobility\u2014offers unprecedented opportunities to explore the structure and evolution of science. The\u00a0\u2026",
-            "title_short": "Science of science",
+            "scholar_id": "eDmxMyR9LeYJ",
+            "source_url": "http://www.ee.cityu.edu.hk/~gchen/pdf/WC_in_NetworkScience2009.pdf",
+            "summary_short": "A comprehensive look at the emerging science of networks Network science helps you design faster, more resilient communication networks; revise infrastructure systems such as electrical power grids, telecommunications networks, and airline routes; model market\u00a0\u2026",
+            "title_short": "Network science: Theory and applications",
+            "year": 2011
+        },
+        {
+            "authors_and_links": {
+                "CJ Stam": "https://scholar.google.com/citations?user=LFpi8AkAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 841,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=15184758444509454874&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "http://search.ebscohost.com/login.aspx?direct=true&profile=ehost&scope=site&authtype=crawler&jrnl=1471003X&AN=98402650&h=jswFCMUH4O2SGEgjvakMmtkgO6fdhwYyEJ2ql2ZY7eyE8hQD5q0Af8Ntxu8yWxS1AnIFK86odYGYtveYRsxvDw%3D%3D&crl=f",
+            "referenced_by": [],
+            "scholar_id": "GmIZXVoZu9IJ",
+            "source_url": "http://search.ebscohost.com/login.aspx?direct=true&profile=ehost&scope=site&authtype=crawler&jrnl=1471003X&AN=98402650&h=jswFCMUH4O2SGEgjvakMmtkgO6fdhwYyEJ2ql2ZY7eyE8hQD5q0Af8Ntxu8yWxS1AnIFK86odYGYtveYRsxvDw%3D%3D&crl=f",
+            "summary_short": "Modern network science has revealed fundamental aspects of normal brain-network organization, such as small-world and scale-free patterns, hierarchical modularity, hubs and rich clubs. The next challenge is to use this knowledge to gain a better understanding of\u00a0\u2026",
+            "title_short": "Modern network science of neurological disorders",
+            "year": 2014
+        },
+        {
+            "authors_and_links": {
+                "JH Trienekens": "https://scholar.google.com/citations?user=9z4JddwAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 272,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=7575423369708964469&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://library.wur.nl/WebQuery/wurpubs/fulltext/23808",
+            "referenced_by": [],
+            "scholar_id": "dQqyHmtPIWkJ",
+            "source_url": "https://library.wur.nl/WebQuery/wurpubs/fulltext/23808",
+            "summary_short": "In this first article of the Journal on Chain and Network Science the base-line is set for a discussion on contents and scope of chain and network theory. Chain and network research is clustered into four main 'streams': Network theory, social capital theory, supply chain\u00a0\u2026",
+            "title_short": "Chain and network science: A research framework",
+            "year": 2001
+        },
+        {
+            "authors_and_links": {
+                "J Dolen\u0161ek": "https://scholar.google.com/citations?user=jesvhyEAAAAJ&hl=en&oi=sra",
+                "M Gosak": "https://scholar.google.com/citations?user=qvCko9oAAAAJ&hl=en&oi=sra",
+                "MS Rupnik": "https://scholar.google.com/citations?user=OwHjOg4AAAAJ&hl=en&oi=sra",
+                "R Markovi\u010d": "https://scholar.google.com/citations?user=fB_x5C0AAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 199,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=12062746911601484500&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.sciencedirect.com/science/article/pii/S1571064517301501",
+            "referenced_by": [],
+            "scholar_id": "1GJyqWd8Z6cJ",
+            "source_url": "https://www.sciencedirect.com/science/article/pii/S1571064517301501",
+            "summary_short": "Network science is today established as a backbone for description of structure and function of various physical, chemical, biological, technological, and social systems. Here we review recent advances in the study of complex biological systems that were inspired and enabled\u00a0\u2026",
+            "title_short": "Network science of biological systems at different scales: A review",
             "year": 2018
         },
         {
             "authors_and_links": {
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+                "N Scott": "https://scholar.google.com/citations?user=y_yfX2QAAAAJ&hl=en&oi=sra",
+                "R Baggio": "https://scholar.google.com/citations?user=KBeq0gIAAAAJ&hl=en&oi=sra"
             },
-            "cited_by_count": 72,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=5169280015700483849&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://cns.iu.edu/images/pres/2010-borner-nwb-author-copy.pdf",
+            "cited_by_count": 423,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=13773306291222316146&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://arxiv.org/pdf/1002.4766",
             "referenced_by": [],
-            "scholar_id": "CV9aSMn4vEcJ",
-            "source_url": "https://cns.iu.edu/images/pres/2010-borner-nwb-author-copy.pdf",
-            "summary_short": "The enormous increase in digital scholarly data and computing power combined with recent advances in text mining, linguistics, network science, and scientometrics make it possible to scientifically study the structure and evolution of science on a large scale. This paper\u00a0\u2026",
-            "title_short": "Rete-netzwerk-red: analyzing and visualizing scholarly networks using the Network Workbench Tool",
+            "scholar_id": "coT1BhmdJL8J",
+            "source_url": "https://arxiv.org/pdf/1002.4766",
+            "summary_short": "This paper presents a review of the methods of the science of networks with an application to the field of tourism studies. The basic definitions and computational techniques are described and a case study (Elba, Italy) used to illustrate the effect of network typology on\u00a0\u2026",
+            "title_short": "Network science: A review focused on tourism",
             "year": 2010
         },
         {
             "authors_and_links": {
-                "DR Amancio": "https://scholar.google.com/citations?user=WHdCNq0AAAAJ&hl=en&oi=sra",
-                "FN Silva": "https://scholar.google.com/citations?user=fhWJEysAAAAJ&hl=en&oi=sra",
-                "LF Costa": "https://scholar.google.com/citations?user=YcAavdAAAAAJ&hl=en&oi=sra"
+                "C Ducruet": "https://scholar.google.com/citations?user=Y9CLko4AAAAJ&hl=en&oi=sra"
             },
-            "cited_by_count": 75,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=154570958804332084&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://arxiv.org/pdf/1506.05690",
+            "cited_by_count": 141,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=13563164485041313186&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://halshs.archives-ouvertes.fr/halshs-01093664/file/Ducruet_Beauguitte_N%26SE_prefinal.pdf",
             "referenced_by": [],
-            "scholar_id": "NK4f1HclJQIJ",
-            "source_url": "https://arxiv.org/pdf/1506.05690",
-            "summary_short": "\u2026 In a similar fashion, science maps can also be constructed by using self-organizing maps in which\nscientific domains are mapped to a 2D space according to a neural network through a Hebbian\nlearning process (Skupin, Biberstine, & B\u00f6rner, 2013). While science maps are\u00a0\u2026 \n",
-            "title_short": "Using network science and text analytics to produce surveys in a scientific topic",
-            "year": 2016
+            "scholar_id": "otUUCT0KOrwJ",
+            "source_url": "https://halshs.archives-ouvertes.fr/halshs-01093664/file/Ducruet_Beauguitte_N%26SE_prefinal.pdf",
+            "summary_short": "For decades, the spatial approach to network analysis has principally focused on planar and technical networks from a classic graph theory perspective. Reference to models and methods developed by other disciplines on non-planar networks, such as sociology and\u00a0\u2026",
+            "title_short": "Spatial science and network science: review and outcomes of a complex relationship",
+            "year": 2014
         },
         {
             "authors_and_links": {
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+                "A Bunde": "https://scholar.google.com/citations?user=n94OP_0AAAAJ&hl=en&oi=sra",
+                "DY Kenett": "https://scholar.google.com/citations?user=jJ6nwkcAAAAJ&hl=en&oi=sra",
+                "E Ben-Jacob": "https://scholar.google.com/citations?user=hX3HxJIAAAAJ&hl=en&oi=sra",
+                "S Havlin": "https://scholar.google.com/citations?user=mB6GO8UAAAAJ&hl=en&oi=sra"
             },
-            "cited_by_count": 27,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=3404630419493307876&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://129.79.36.116/docs/publications/2007-borner-making-epb.pdf",
+            "cited_by_count": 171,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=1595421326289227383&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://link.springer.com/content/pdf/10.1140/epjst/e2012-01695-x.pdf",
             "referenced_by": [],
-            "scholar_id": "5EVj-VOtPy8J",
-            "source_url": "https://129.79.36.116/docs/publications/2007-borner-making-epb.pdf",
-            "summary_short": "In this paper I discuss and compare different approaches to collecting, interlinking, organizing, and making sense of scholarly knowledge and expertise in a comprehensive and timely fashion.'Comprehensive'refers to the need for collecting and interlinking\u00a0\u2026",
-            "title_short": "\u2026\u00a0sense of mankind's scholarly knowledge and expertise: collecting, interlinking, and organizing what we know and different approaches to mapping (network) science",
-            "year": 2007
-        },
-        {
-            "authors_and_links": {
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
-            },
-            "cited_by_count": 73,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=7599416368689954089&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://cns.iu.edu/docs/presentations/2011-borner-unt-atlas.pdf",
-            "referenced_by": [],
-            "scholar_id": "Kb0NhOyMdmkJ",
-            "source_url": "https://cns.iu.edu/docs/presentations/2011-borner-unt-atlas.pdf",
-            "summary_short": "3D nD Physically-based Abstract space Accuracy is measurable Accuracy is difficult Trade-offs have more to do with granularity Trade-offs indirectly affect accuracy 2-D projections are very accurate at local levels 2-D projections neglect a great deal of data Centuries of\u00a0\u2026",
-            "title_short": "Atlas of science",
-            "year": 2010
-        },
-        {
-            "authors_and_links": {
-                "HJ Falk\u2010Krzesinski": "https://scholar.google.com/citations?user=NyEIp24AAAAJ&hl=en&oi=sra",
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
-            },
-            "cited_by_count": 135,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=13825753893553505139&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://ascpt.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-8062.2010.00223.x",
-            "referenced_by": [],
-            "scholar_id": "cwM7Cerx3r8J",
-            "source_url": "https://ascpt.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1752-8062.2010.00223.x",
-            "summary_short": "Please review our Terms and Conditions of Use and check box below to share full-text version \nof article\u00a0\u2026 I have read and accept the Wiley Online Library Terms and Conditions of Use\u00a0\u2026 \nUse the link below to share a full-text version of this article with your friends and colleagues\u00a0\u2026",
-            "title_short": "Advancing the science of team science",
-            "year": 2010
-        },
-        {
-            "authors_and_links": {
-                "AM Zoss": "https://scholar.google.com/citations?user=-6yoDlIAAAAJ&hl=en&oi=sra",
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra",
-                "R Klavans": "https://scholar.google.com/citations?user=aorDhxQAAAAJ&hl=en&oi=sra"
-            },
-            "cited_by_count": 203,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=5706670350889875725&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039464",
-            "referenced_by": [],
-            "scholar_id": "DXkL63IqMk8J",
-            "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0039464",
-            "summary_short": "Global maps of science can be used as a reference system to chart career trajectories, the location of emerging research frontiers, or the expertise profiles of institutes or nations. This paper details data preparation, analysis, and layout performed when designing and\u00a0\u2026",
-            "title_short": "Design and update of a classification system: The UCSD map of science",
+            "scholar_id": "d06NTD4TJBYJ",
+            "source_url": "https://link.springer.com/content/pdf/10.1140/epjst/e2012-01695-x.pdf",
+            "summary_short": "Network theory has become one of the most visible theoretical frameworks that can be applied to the description, analysis, understanding, design and repair of multi-level complex systems. Complex networks occur everywhere, in man-made and human social systems, in\u00a0\u2026",
+            "title_short": "Challenges in network science: Applications to infrastructures, climate, social systems and economics",
             "year": 2012
         },
         {
             "authors_and_links": {
-                "A Maltese": "https://scholar.google.com/citations?user=48VElWEAAAAJ&hl=en&oi=sra",
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
+                "R Baggio": "https://scholar.google.com/citations?user=KBeq0gIAAAAJ&hl=en&oi=sra"
             },
-            "cited_by_count": 84,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=3055808913496042827&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "https://cns.iu.edu/docs/publications/2015-borner-investigating.pdf",
+            "cited_by_count": 187,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=3013424602908434972&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.iby.it/turismo/papers/baggio-cit_lett.pdf",
             "referenced_by": [],
-            "scholar_id": "S21nNgRqaCoJ",
-            "source_url": "https://cns.iu.edu/docs/publications/2015-borner-investigating.pdf",
-            "summary_short": "In the information age, a person's ability to read and make data visualizations is nearly as important as being able to read and write text. This article reports the results of a multi-phase study conducted in informal learning environments in three US science museums. The goal\u00a0\u2026",
-            "title_short": "Investigating aspects of data visualization literacy using 20 information visualizations and 273 science museum visitors",
-            "year": 2016
-        },
-        {
-            "authors_and_links": {
-                "K B\u00f6rner": "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oi=sra"
-            },
-            "cited_by_count": 310,
-            "cited_by_url": "https://scholar.google.com/scholar?cites=2072474903317939480&as_sdt=5,43&sciodt=0,43&hl=en",
-            "doc_url": "",
-            "referenced_by": [],
-            "scholar_id": "GIUtsvHowhwJ",
-            "source_url": "https://books.google.com/books?hl=en&lr=&id=eLofEAAAQBAJ&oi=fnd&pg=PR11&dq=network+science+borner&ots=_sj8C9P2lU&sig=OXBr-1nYC87D3mn0eAura8xCZRc",
-            "summary_short": "Science maps that can help us understand and navigate the immense amount of results generated by today's science and technology. Cartographic maps have guided our explorations for centuries, allowing us to navigate the world. Science maps have the\u00a0\u2026",
-            "title_short": "Atlas of science: Visualizing what we know",
-            "year": 2010
+            "scholar_id": "HKLH5bXV0SkJ",
+            "source_url": "https://www.iby.it/turismo/papers/baggio-cit_lett.pdf",
+            "summary_short": "The extent of collaboration and cooperation is an important determinant for the development of a tourism destination. These features are usually assessed through qualitative investigations. This letter proposes a quantitative approach based on the evaluation of the\u00a0\u2026",
+            "title_short": "Collaboration and cooperation in a tourism destination: a network science approach",
+            "year": 2011
         }
     ]
 }

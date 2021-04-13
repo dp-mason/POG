@@ -1,0 +1,156 @@
+{
+    "id": "rnDgM4giVJIJ",
+    "papers": [
+        {
+            "authors_and_links": {},
+            "cited_by_count": 673,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=11662335068303864654&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://doc1.bibliothek.li/aaf/FLMF018143.pdf",
+            "referenced_by": [],
+            "scholar_id": "TjPVdfTv2KEJ",
+            "source_url": "https://doc1.bibliothek.li/aaf/FLMF018143.pdf",
+            "summary_short": "Handbook of Discrete and Combinatorial Mathematics provides a comprehensive reference volume for mathematicians, computer scientists, engineers, as well as students and reference librarians. The material is presented so that key information can be located and\u00a0\u2026",
+            "title_short": "Handbook of discrete and combinatorial mathematics",
+            "year": 2017
+        },
+        {
+            "authors_and_links": {
+                "DG Rand": "https://scholar.google.com/citations?user=C0ANojIAAAAJ&hl=en&oi=sra",
+                "JJ Jordan": "https://scholar.google.com/citations?user=uQ8QsQ8AAAAJ&hl=en&oi=sra",
+                "M Perc": "https://scholar.google.com/citations?user=nfY5WDMAAAAJ&hl=en&oi=sra",
+                "S Boccaletti": "https://scholar.google.com/citations?user=BEC76f4AAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 667,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=8773888187476534740&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.sciencedirect.com/science/article/pii/S0370157317301424",
+            "referenced_by": [],
+            "scholar_id": "1OWICdIcw3kJ",
+            "source_url": "https://www.sciencedirect.com/science/article/pii/S0370157317301424",
+            "summary_short": "Extensive cooperation among unrelated individuals is unique to humans, who often sacrifice personal benefits for the common good and work together to achieve what they are unable to execute alone. The evolutionary success of our species is indeed due, to a large degree\u00a0\u2026",
+            "title_short": "Statistical physics of human cooperation",
+            "year": 2017
+        },
+        {
+            "authors_and_links": {
+                "D Chen": "https://scholar.google.com/citations?user=BSD259PEJFEC&hl=en&oi=sra",
+                "QM Zhang": "https://scholar.google.com/citations?user=e6-gZJ8AAAAJ&hl=en&oi=sra",
+                "T Zhou": "https://scholar.google.com/citations?user=MXgWgmEAAAAJ&hl=en&oi=sra",
+                "XL Ren": "https://scholar.google.com/citations?user=6MCQDg0AAAAJ&hl=en&oi=sra",
+                "YC Zhang": "https://scholar.google.com/citations?user=BK01UWwAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 672,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=2297623996522050844&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.sciencedirect.com/science/article/pii/S0370157316301570",
+            "referenced_by": [],
+            "scholar_id": "HDUc_NnM4h8J",
+            "source_url": "https://www.sciencedirect.com/science/article/pii/S0370157316301570",
+            "summary_short": "Real networks exhibit heterogeneous nature with nodes playing far different roles in structure and function. To identify vital nodes is thus very significant, allowing us to control the outbreak of epidemics, to conduct advertisements for e-commercial products, to predict\u00a0\u2026",
+            "title_short": "Vital nodes identification in complex networks",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "CT Bauch": "https://scholar.google.com/citations?user=DmwSNy0AAAAJ&hl=en&oi=sra",
+                "S Bhattacharyya": "https://scholar.google.com/citations?user=oXu5o6gAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 591,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=1064721060812215194&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.sciencedirect.com/science/article/pii/S0370157316303349",
+            "referenced_by": [],
+            "scholar_id": "mtOW5immxg4J",
+            "source_url": "https://www.sciencedirect.com/science/article/pii/S0370157316303349",
+            "summary_short": "Historically, infectious diseases caused considerable damage to human societies, and they continue to do so today. To help reduce their impact, mathematical models of disease transmission have been studied to help understand disease dynamics and inform\u00a0\u2026",
+            "title_short": "Statistical physics of vaccination",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "A Ortega": "https://scholar.google.com/citations?user=K4bCJYcAAAAJ&hl=en&oi=sra",
+                "J Kova\u010devi\u0107": "https://scholar.google.com/citations?user=LNhBbPEAAAAJ&hl=en&oi=sra",
+                "P Frossard": "https://scholar.google.com/citations?user=-Ve9sJ0AAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 581,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=8731468578157020981&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://arxiv.org/pdf/1712.00468",
+            "referenced_by": [],
+            "scholar_id": "NceIGGloLHkJ",
+            "source_url": "https://arxiv.org/pdf/1712.00468",
+            "summary_short": "Research in graph signal processing (GSP) aims to develop tools for processing data defined on irregular graph domains. In this paper, we first provide an overview of core ideas in GSP and their connection to conventional digital signal processing, along with a brief\u00a0\u2026",
+            "title_short": "Graph signal processing: Overview, challenges, and applications",
+            "year": 2018
+        },
+        {
+            "authors_and_links": {
+                "P Holme": "https://scholar.google.com/citations?user=v9f2xUAAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 500,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=991341493020675428&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://arxiv.org/pdf/1508.01303",
+            "referenced_by": [],
+            "scholar_id": "ZE2a5tXzwQ0J",
+            "source_url": "https://arxiv.org/pdf/1508.01303",
+            "summary_short": "The power of any kind of network approach lies in the ability to simplify a complex system so that one can better understand its function as a whole. Sometimes it is beneficial, however, to include more information than in a simple graph of only nodes and links. Adding\u00a0\u2026",
+            "title_short": "Modern temporal network theory: a colloquium",
+            "year": 2015
+        },
+        {
+            "authors_and_links": {
+                "AL Barab\u00e1si": "https://scholar.google.com/citations?user=vsj2slIAAAAJ&hl=en&oi=sra",
+                "YY Liu": "https://scholar.google.com/citations?user=84FUioAAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 407,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=5912721949082175128&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://arxiv.org/pdf/1508.05384",
+            "referenced_by": [],
+            "scholar_id": "mMayJkk1DlIJ",
+            "source_url": "https://arxiv.org/pdf/1508.05384",
+            "summary_short": "A reflection of our ultimate understanding of a complex system is our ability to control its behavior. Typically, control has multiple prerequisites: it requires an accurate map of the network that governs the interactions between the system's components, a quantitative\u00a0\u2026",
+            "title_short": "Control principles of complex systems",
+            "year": 2016
+        },
+        {
+            "authors_and_links": {
+                "T Kanade": "https://scholar.google.com/citations?user=LQ87h3sAAAAJ&hl=en&oi=sra",
+                "T Sato": "https://scholar.google.com/citations?user=2JOndcsAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 381,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=3495362629343242824&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.academia.edu/download/32346965/sato_toshio_1998_1.pdf",
+            "referenced_by": [],
+            "scholar_id": "SOoty8oFgjAJ",
+            "source_url": "https://www.academia.edu/download/32346965/sato_toshio_1998_1.pdf",
+            "summary_short": "Video OCR is a technique that can greatly help to locate topics of interest in a large digital news video archive via the automatic extraction and reading of captions and annotations. News captions generally provide vital search information about the video being presented\u00a0\u2026",
+            "title_short": "Video OCR for digital news archive",
+            "year": 1998
+        },
+        {
+            "authors_and_links": {
+                "S Dorogovtsev": "https://scholar.google.com/citations?user=BeedFHMAAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 381,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=2607904750890096041&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "http://scem.spb.hse.ru/data/2018/12/26/1143137746/Dorogovtsev-complex_networks-HSE.pdf",
+            "referenced_by": [],
+            "scholar_id": "qZXbvI0jMSQJ",
+            "source_url": "http://scem.spb.hse.ru/data/2018/12/26/1143137746/Dorogovtsev-complex_networks-HSE.pdf",
+            "summary_short": "Page 1. What are complex networks? What is their architecture? What is their nature? What\nis their function? How do we study, optimize, and use them? SN Dorogovtsev Departamento\nde F\u0131sica da Universidade de Aveiro & I3N, Iofie Institute, St. Petersburg Page 2. Literature\u00a0\u2026",
+            "title_short": "Complex networks",
+            "year": 2010
+        },
+        {
+            "authors_and_links": {
+                "A Clauset": "https://scholar.google.com/citations?user=e7VI_HcAAAAJ&hl=en&oi=sra",
+                "AD Broido": "https://scholar.google.com/citations?user=-pR66i4AAAAJ&hl=en&oi=sra"
+            },
+            "cited_by_count": 405,
+            "cited_by_url": "https://scholar.google.com/scholar?cites=11921319105852527269&as_sdt=5,43&sciodt=0,43&hl=en",
+            "doc_url": "https://www.nature.com/articles/s41467-019-08746-5",
+            "referenced_by": [],
+            "scholar_id": "pdJqnpAIcaUJ",
+            "source_url": "https://www.nature.com/articles/s41467-019-08746-5",
+            "summary_short": "Real-world networks are often claimed to be scale free, meaning that the fraction of nodes with degree k follows a power law k\u2212 \u03b1, a pattern with broad implications for the structure and dynamics of complex systems. However, the universality of scale-free networks remains\u00a0\u2026",
+            "title_short": "Scale-free networks are rare",
+            "year": 2019
+        }
+    ]
+}

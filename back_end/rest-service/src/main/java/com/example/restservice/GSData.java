@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class GSData {
 	public int id;
+	public String parentId;
+	public String scholar_id;
 	public String title = "";
 	public int year = 0;
 	public String summary = "";
