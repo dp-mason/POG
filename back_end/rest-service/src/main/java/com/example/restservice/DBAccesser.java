@@ -76,7 +76,7 @@ public class DBAccesser {
 			ResultSet rs = stmt.executeQuery();
 
 			//String sql2 = "Select count(*) as count FROM (SELECT cited_by.citer FROM pogdb.cited_by WHERE cited_by.cited = ?) as citers join pogdb.cited_by on citers.citer = cited_by.cited GROUP BY cited;";
-			String sql2 = "SELECT count(*) as count FROM pogdb.cited_by WHERE cited_by.cited = ? GROUP BY cited_by.cited;";
+			String sql2 = "SELECT count(*) as counted FROM pogdb.cited_by WHERE cited_by.cited = ? GROUP BY cited_by.cited;";
 			PreparedStatement stmt2 = this.conn.prepareStatement(sql2);
 			//stmt2.setString(1, pid);
 			//ResultSet rs2 = stmt2.executeQuery();
@@ -112,7 +112,7 @@ public class DBAccesser {
 					ResultSet rs2 = stmt2.executeQuery();
 
 					if(rs2.next()) {
-						citedCount = (rs2.getInt("count"));
+						citedCount = (rs2.getInt("counted"));
 					}
 					else{
 						citedCount = 0;
