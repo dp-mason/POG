@@ -54,8 +54,7 @@ def extract_citation_url(entry_div):
     #	https://scholar.google.com/scholar?q=info:      {id}      :scholar.google.com/&output=cite&scirp={p}&hl=en
     # Turns into:
     #	https://scholar.google.com/scholar?q=info:  f0Kgtf5gNsgJ  :scholar.google.com/&output=cite&scirp={p}&hl=en
-    # where {id} is replaced with the "data-cid" in the TAGS of the <div> for that specific search result entry:
-    # 	<div class="gs_r gs_or gs_scl" data-cid="f0Kgtf5gNsgJ" data-did="f0Kgtf5gNsgJ" data-lid data-rp="0">…</div>
+    # where {id} is replaced with the "data-cid" in the TAGS of the <div> for that specific search result entry
     #   We might be able to use these "c-ids" in our own SQL table, but we should think about it a bit more carefully
     cit_url_start = "https://scholar.google.com/scholar?q=info:"
     cit_url_end   = ":scholar.google.com/&output=cite&scirp={p}&hl=en"
@@ -94,8 +93,7 @@ class ShortPaperInfo():
         self.referenced_by = list(set(self.referenced_by + papers_on_req_page))
 
     def authordict_and_year(self, entry_div):
-        # TODO: properly parse the line
-        # 	<div class="gs_a"><a href="https://scholar.google.com/citations?user=YirSp_cAAAAJ&amp;hl=en&amp;oi=sra">K <b>Börner</b></a>, S Sanyal, <a href="https://scholar.google.com/citations?user=U3CXAPsAAAAJ&amp;hl=en&amp;oi=sra">A Vespignani</a>&nbsp;- …&nbsp;of information <b>science </b>and&nbsp;…, 2007 - Wiley Online Library</div>
+        
         subsection = entry_div.find('div', class_='gs_a')
         
         author_dict = {}
@@ -265,9 +263,9 @@ def stand_alone_tests():
     search_results = scholar_search(search_url)
     search_results[0].cache_citing_papers(0)
     print(search_results[0])
-    print("\nsearch_result.authors_and_links['K Börner'] == ", search_results[0].authors_and_links['K Börner'], "\n")
+    print("\nsearch_result.authors_and_links['K Borner'] == ", search_results[0].authors_and_links['K Borner'], "\n")
     
-    assert search_results[0].authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+    assert search_results[0].authors_and_links['K Borner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
     assert search_results[0].scholar_id == "f0Kgtf5gNsgJ"
 
     # save ShortPaper class as JSON
@@ -317,9 +315,9 @@ def main():
         # Create a JSON that will be sent back to the REST API
 
     curr_workdir = os.getcwd()
-
     for filename in os.listdir(curr_workdir):
         if filename.endswith(".html"):
+            print("file: ", filename, " discovered")
             id = filename[0:-5] # cutout the ".html" extension from id
             outfile_name = ""
             
@@ -345,7 +343,6 @@ def main():
                 
             # TODO: how does python interface with SQL
             # Make an entry into the SQL table for the parsed papers, make info updates in table if necessary
-            return
 
 if DEBUG != 1:
     main()

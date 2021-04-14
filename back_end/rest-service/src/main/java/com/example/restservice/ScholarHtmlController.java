@@ -68,22 +68,28 @@ public class ScholarHtmlController {
         // call the python program to parse the file (file name as command line argument?)
         // Runs the proper shell script depending on the OS it is running on
         System.out.println(tmp_dir);
-        if (OSValidator.isUnix()) {
-            Runtime.getRuntime().exec(tmp_dir + "parse.sh");
-        } else if (OSValidator.isWindows()) {
-            Runtime.getRuntime().exec(tmp_dir + "parse.bat");
-        } else {
-            System.out.println("System is neither Windows nor UNIX, Mac is not yet supported");
-        }
+	Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+        //if (OSValidator.isUnix()) {
+	//    System.out.println("executing " + tmp_dir + "parse.sh");
+        //    Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+        //} else if (OSValidator.isWindows()) {
+        //    Runtime.getRuntime().exec(tmp_dir + "parse.bat");
+        //} else {
+        //    System.out.println("System is neither Windows nor UNIX, Mac is not yet supported");
+        //}
 
         // wait for output json to come back from Python
         File parsed_file = new File(tmp_dir + parsed_output_name);
         int backoff_timeout = 1;
-        while(!parsed_file.exists()) {
+        
+	// background process will parse the raw info, wait for that to happen
+	
+	while(!parsed_file.exists()) {
             Thread.sleep(backoff_timeout);
             backoff_timeout = backoff_timeout + 50;
             System.out.println("Waiting for Python parsing of " + parsed_output_name + "...");
-            if(backoff_timeout > 1000) {
+	    //Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+            if(backoff_timeout > 500) {
                 System.out.println("Took too long...");
                 break;
             }
@@ -96,7 +102,7 @@ public class ScholarHtmlController {
         try {
             parsed_file.delete();
         } catch (SecurityException e) {
-            System.out.println("Permission to delete unprocessed html file was denied");
+            System.out.println("Permission to delete processed json file was denied");
         }
         // Initialize the data structure that will be used to enter stuff into SQL database
         // Loop over all papers on this page
