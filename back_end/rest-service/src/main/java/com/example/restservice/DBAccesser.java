@@ -69,15 +69,17 @@ public class DBAccesser {
 		try{
 			//ArrayList<String> childrenIds = new ArrayList<String>();
 			//String sql = "SELECT cited_by.citer FROM pogdb.cited_by WHERE cited_by.cited = ?";
-			String sql = "SELECT * FROM (SELECT * FROM (SELECT paper_id as pid, title, year, doc_url, source_url, summary, cited_by_url FROM (SELECT cited_by.citer FROM pogdb.cited_by WHERE cited_by.cited = ?) as citers join pogdb.papers on citers.citer = papers.paper_id) as paperdata join pogdb.authored_by on authored_by.paper_id = paperdata.pid) as authid join pogdb.authors on authid.author_id = authors.author_id Order by paper_id;";
+			String sql = "SELECT * FROM (SELECT * FROM (SELECT paper_id as pid, title, year, doc_url, source_url, summary, cited_by_url, count FROM (SELECT cited_by.citer FROM pogdb.cited_by WHERE cited_by.cited = ?) as citers join pogdb.papers on citers.citer = papers.paper_id) as paperdata join pogdb.authored_by on authored_by.paper_id = paperdata.pid) as authid join pogdb.authors on authid.author_id = authors.author_id Order by paper_id;";
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
 			stmt.setString(1, pid);
 
 			ResultSet rs = stmt.executeQuery();
 
 			//String sql2 = "Select count(*) as count FROM (SELECT cited_by.citer FROM pogdb.cited_by WHERE cited_by.cited = ?) as citers join pogdb.cited_by on citers.citer = cited_by.cited GROUP BY cited;";
-			String sql2 = "SELECT count(*) as counted FROM pogdb.cited_by WHERE cited_by.cited = ? GROUP BY cited_by.cited;";
-			PreparedStatement stmt2 = this.conn.prepareStatement(sql2);
+
+			//$String sql2 = "SELECT count(*) as counted FROM pogdb.cited_by WHERE cited_by.cited = ? GROUP BY cited_by.cited;";
+			//$PreparedStatement stmt2 = this.conn.prepareStatement(sql2);
+
 			//stmt2.setString(1, pid);
 			//ResultSet rs2 = stmt2.executeQuery();
 			//ArrayList<Integer> citedCounts = new ArrayList<Integer>();
@@ -108,15 +110,17 @@ public class DBAccesser {
 					childGSD.summary = rs.getString("summary");
 					childGSD.cited_by_url = rs.getString("cited_by_url");
 					childGSD.parentId = pid;
-					stmt2.setString(1, currId);
-					ResultSet rs2 = stmt2.executeQuery();
+					citedCount = (rs.getInt("count"));
+					//$stmt2.setString(1, currId);
+					//$ResultSet rs2 = stmt2.executeQuery();
 
-					if(rs2.next()) {
-						citedCount = (rs2.getInt("counted"));
-					}
-					else{
-						citedCount = 0;
-					}
+					//$if(rs2.next()) {
+						//$citedCount = (rs2.getInt("counted"));
+					//$}
+					//$else{
+						//$citedCount = 0;
+					//$}
+
 					childGSD.cited_by_count = citedCount;
 
 
@@ -512,7 +516,7 @@ public class DBAccesser {
 				return;
 			}
 
-			String sql = "INSERT INTO pogdb.papers (paper_id, title, year, doc_url, source_url, summary, cited_by_url) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO pogdb.papers (paper_id, title, year, doc_url, source_url, summary, cited_by_url, count) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
 
 
@@ -552,6 +556,8 @@ public class DBAccesser {
 				cited_by_url = gsd.cited_by_url.substring(0,105);
 			}
 			stmt.setString(7, cited_by_url);
+
+			stmt.setInt(8, gsd.cited_by_count);
 			stmt.executeUpdate();
 
 			//Will get rid of when using google scholar id

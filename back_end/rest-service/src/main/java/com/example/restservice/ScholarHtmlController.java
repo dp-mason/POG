@@ -152,7 +152,7 @@ public class ScholarHtmlController {
         //~public @ResponseBody String Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
         // TODO: if it is a "cited by" page.
-        String htmlid = "raw_html3"; //XXX: badbad fix this soon
+        String htmlid = "raw_html4"; //XXX: badbad fix this soon
 
 
         String raw_file_name = htmlid + ".html";
