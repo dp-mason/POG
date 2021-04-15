@@ -34,7 +34,8 @@ chrome.runtime.onMessage.addListener((msg) => {
 
         // send raw html to our server for parsing
         // recv the result of the parsing and print it to the console
-        const url = "http://localhost:8080/papers/submitPaper";
+        //const url = "http://localhost:8080/papers/submitPaper";
+        const url = "http://104.198.137.246:8080/papers/submitPaper";
         fetch(url, {
             method : "POST",
             body: raw_html,
@@ -59,15 +60,15 @@ chrome.runtime.onMessage.addListener((msg) => {
 document.addEventListener('DOMContentLoaded', function() {
     
     // button script used to test the page update functionality with hard coded data
-    var updateButton = document.getElementById('test_update');
-    var new_url = "https://scholar.google.com/scholar?cites=7599416368689954089&as_sdt=5,43&sciodt=0,43&hl=en"
+    //var updateButton = document.getElementById('test_update');
+    //var new_url = "https://scholar.google.com/scholar?cites=7599416368689954089&as_sdt=5,43&sciodt=0,43&hl=en"
 
-    updateButton.addEventListener('click', function() {
-        console.log("Updating...")
-        updating = chrome.tabs.update({url: "https://developer.mozilla.org"})
-        updating.then(onUpdated, onError)
-        console.log("completed update")
-    })
+    //updateButton.addEventListener('click', function() {
+    //    console.log("Updating...")
+    //    updating = chrome.tabs.update({url: "https://developer.mozilla.org"})
+    //    updating.then(onUpdated, onError)
+    //    console.log("completed update")
+    //})
     
     var searchButton = document.getElementById('search');
     searchButton.addEventListener('click', function() {
