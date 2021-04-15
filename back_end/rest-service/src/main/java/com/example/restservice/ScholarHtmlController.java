@@ -68,7 +68,7 @@ public class ScholarHtmlController {
         // call the python program to parse the file (file name as command line argument?)
         // Runs the proper shell script depending on the OS it is running on
         System.out.println(tmp_dir);
-	Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+	//Runtime.getRuntime().exec(tmp_dir + "parse.sh");
         //if (OSValidator.isUnix()) {
 	//    System.out.println("executing " + tmp_dir + "parse.sh");
         //    Runtime.getRuntime().exec(tmp_dir + "parse.sh");
