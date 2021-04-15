@@ -7,7 +7,7 @@
   
     "browser_action": {
         "default_icon": "poghog1.png",
-        "default_popup": "new_popup.html"
+        "default_popup": "popup.html"
     },
     "permissions": [
         "activeTab",
