@@ -1,0 +1,3 @@
+Boot up the REST API the command ./mvnw spring-boot:run
+Boot up the parser in the /tmp directory with ./parse.sh (make sure it has read write and execute permissions)
+  If started successfully the program should output "watches established"
