@@ -28,14 +28,6 @@ public class GSData {
 	GSData(){
 		this.title = "";
 		this.year = -1;
-		/*fake = new GSData[3];
-		try {
-			fake[0] = new JSONObject().put("author", 5);
-			fake[1] = new JSONObject().put("bogus", "fiddlefaaddle").put("foo", "baz");
-			fake[2] = new JSONObject().put("gyj","cgh");
-		} catch (JSONException e){
-			e.printStackTrace();
-		}*/
 	}
 
 	GSData(String title, int year){
@@ -43,47 +35,10 @@ public class GSData {
 		this.year = year;
 	}
 
-	public int getId(){
-		return this.id;
-	}
-	
-	public String makeQueryUrl() {
-		String url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C43&q=";
-		url += this.title.replace(" ", "+");
-		url += "&btnG=";
-		return url;
-	}
-	
-	public String makeSourceUrl() {
-		String url = "https://www.journal.org/";
-		url += this.title.replace(" ", "+");
-		url += ".com";
-		return url;
-	}
-	
-	public String makeDocUrl() {
-		String url = "https://www.journal.org/";
-		url += this.title.replace(" ", "+");
-		url += ".pdf";
-		return url;
-	}
-	public String makeCitedByUrl() {
-		String url = "https://scholar.google.com/scholar?cites=";
-		url += this.title.replace(" ", "+");
-		url += "&as_sdt=5,43&sciodt=0,43&hl=en";
-		return url;
-	}
-
-	public void setChildren(GSData[] children){
-		fake = children;
-	}
-
-	//~String
-	public JSONObject toJSON(GSData[] children){
+	//Might be useful but we dont have to keep this
+	public JSONObject toCitersJSON(GSData[] children){
 		JSONArray childjson = new JSONArray();
-		//JSONObject[] childjson = new JSONObject[children.length];
 		for(int i = 0; i < children.length; i++){
-			//String[] other_authors = new String[children[i].authors.length];
 			JSONObject jtemp = new JSONObject();
 			for(int j = 0; j < children[i].authors.size(); j++){
 				try {
@@ -92,15 +47,13 @@ public class GSData {
 					e.printStackTrace();
 				}
 			}
-			//String[] s = new String[0];
 			try {
-				//childjson[i] = new JSONObject().put("authors_and_links", jtemp)
 				childjson.put (new JSONObject().put("authors_and_links", jtemp)
 						.put("cited_by_count", children[i].cited_by_count)
 						.put("cited_by_url", children[i].cited_by_url)
 						.put("doc_url", children[i].doc_url)
 						.put("referenced_by", new JSONArray())
-						.put("scholar_id", Integer.toString(children[i].id))
+						.put("scholar_id", children[i].scholar_id)
 						.put("source_url", children[i].source_url)
 						.put("summary_short", children[i].summary)
 						.put("title_short", children[i].title)
@@ -112,12 +65,11 @@ public class GSData {
 		}
 		JSONObject jsonResp = new JSONObject();
 		try {
-			jsonResp.put("id", Integer.toString(this.id))
+			jsonResp.put("id", this.scholar_id)
 					.put("papers", childjson);
 		} catch (JSONException e){
 			e.printStackTrace();
 		} finally {
-			//~return jsonResp.toString();
 			return jsonResp;
 		}
 	}

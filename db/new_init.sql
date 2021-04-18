@@ -17,9 +17,9 @@ CREATE TABLE `pogdb`.`papers` (
 DROP TABLE IF EXISTS pogdb.authors CASCADE;
 CREATE TABLE `pogdb`.`authors` (
   `author_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `author_url` VARCHAR(75) NULL,
-  `author_fname` VARCHAR(45) NULL,
-  `author_lname` VARCHAR(45) NULL,
+  `author_url` VARCHAR(105) NULL,
+  `author_fname` VARCHAR(50) NULL,
+  `author_lname` VARCHAR(50) NULL,
   PRIMARY KEY (`author_id`))
   ENGINE = InnoDB;
 

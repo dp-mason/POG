@@ -14,10 +14,9 @@ import java.awt.*;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.regex.Pattern;
+
 
 @CrossOrigin
 @RestController
@@ -35,111 +34,22 @@ public class ScholarHtmlController {
     @PostMapping(value = "/findPaper"/*, produces = "application/json"*/)
     //~ParseException
     public @ResponseBody ResponseEntity<GSData[]> Recv_Paper_Html(@RequestBody String paper_id) throws IOException, InterruptedException {
-        //parameter will be "{"titleorid" : "foo", "isTitle": "true", "year": 1990}"
-        //get istitle index
-        //int Istitle=indexOf("\"isTitle\":") + 10;
-        //get titleorid field
-        //int idref = indexOf("\"titleorid\":")+12;
-        //String Titleorid = arg.substring(idref,indexOf("\"",idref));
-
-
-
-        //int parentId = 175;
-        //String parentTitle = "What Every Programmer Needs to Know about Security (Advances in Information Security)";
-        //int parentYear = 2006;
+        //Connect to database
         DBAccesser dba = new DBAccesser();
 
+        //Get children of paper that we received id of
         ArrayList<GSData> children = dba.getChildrenById(paper_id);
+
+        //Put children into regular array
         GSData[] childArr = new GSData[children.size()];
         for(int i = 0; i < children.size(); i++){
             childArr[i] = children.get(i);
         }
 
-        //if (arg.substring(Istitle,arg.indexOf("\"",Istitle)) == "true"){
-        //get year
-        //int yrindex = indexOf("\"year\":") + 8;
-        //parentId = dba.getPaperId(Titleorid,arg.substring(yrindex, arg.indexOf("\"",yrindex)));
-        //if(parentId == -1){return null;}
-        //}
-        //else{
-        //parentId = Integer.parseInt(Titleorid);
-        //}
-        //then
-        //if(dba.getPaperRow(parentId, parent) == 0){
-        //return null;
-        //}
-
-        //if(dba.getPaperId(paper_id) == -1){
-          //  return null;
-        //}
-        //Integer[] cids = dba.getCitedIds(parentId);
-        //if (cids.length == 0){return null;}
-        //dba.getPaperRow(parentId, parent);
-/*
-        GSData[] gsdArr = new GSData[cids.length];
-        for (int i = 0; i < cids.length; i++) {
-            GSData gsd = new GSData();
-
-            dba.getPaperRow(cids[i], gsd);
-            dba.getCitedCount(cids[i], gsd);
-            dba.getAuthors(cids[i], gsd);
-            gsdArr[i] = gsd;
-        }*/
+        //Close connection to db
         dba.closeconnection();
 
-        //parent.setChildren(gsdArr);
-        //~String result_json_text = parent.toJSON(gsdArr);
 
-        //JSONObject result_json_gsd = parent.toJSON(gsdArr); //~
-        System.out.println("b4 result");
-
-        //System.out.println("Result: " + result_json_gsd.toString());
-        //System.exit(0);
-        /*
-        try {
-            JSONArray tmpj = (JSONArray) result_json_gsd.get("papers");
-            for (int i= 0; i < tmpj.length(); i++){
-                //System.out.println(tmpj.get(i).toString());
-                Iterator<String> keys =((JSONObject)tmpj.get(i)).keys();
-                while (keys.hasNext()){
-                    String key = keys.next();
-                    System.out.println(key);
-                }
-            }
-
-        }
-        catch (JSONException e){
-            e.printStackTrace();
-        }
-        */
-
-        //~JSONParser parser = new JSONParser();
-        //~Object obj = parser.parse(new FileReader(parsed_output_name));
-        //Object obj = parser.parse(result_json_text);
-
-        //~JSONObject result_json = (JSONObject) obj;
-
-        //~JSONParser parser = new JSONParser();
-        //~Object obj = parser.parse(new FileReader(parsed_output_name));
-
-        //parsed_file.delete(); //uncomment
-
-        // Initialize the data structure that will be used to enter stuff into SQL database
-        // Loop over all papers on this page
-        //      [papers at index i].initFromJSON("output.json");
-
-        // send back the JSON file that was generated to the user
-        //InputStream raw_json = getClass().getResourceAsStream(parsed_output_name);
-        //~return result_json;
-        //~return result_json_gsd.toString();
-        //!return result_json_gsd;
-        JSONObject js = new JSONObject();
-        try {
-            js.put("id", 1);
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
-        //return js; //new ResponseEntity<>("Hello", HttpStatus.OK);
         return new ResponseEntity<GSData[]>(childArr, HttpStatus.OK);
     }
 
@@ -147,35 +57,34 @@ public class ScholarHtmlController {
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
     //~ParseException
     public @ResponseBody boolean StorePaperInfo(@RequestBody String user_html) throws IOException, InterruptedException {
-        //try {
-        //~public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
-        //~public @ResponseBody String Recv_Paper_Html(@RequestBody String user_html) throws IOException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
         // TODO: if it is a "cited by" page.
-        String htmlid = "raw_html4"; //XXX: badbad fix this soon
-
+        String htmlid = "";
+        //For when we change how files are named
+        htmlid = user_html.substring(0,user_html.indexOf("*")) + java.time.LocalDate.now() + java.time.LocalTime.now();
+        htmlid = "raw_html6"; //XXX: badbad fix this soon
 
         String raw_file_name = htmlid + ".html";
         String parsed_output_name = htmlid + ".json";
 
-        System.out.println("yooooouuu1: " + user_html.substring(0,150));
-        //String pidtmp = user_html.substring(0, user_html.indexOf("*"));
+        //Front end needs to append pogdb* to message to deal with duplicate messages
         if(user_html.indexOf("pogdb*") == -1){
-            //System.exit(-1);
+
             System.out.println("bad");
+            //wait until handling of correct message has probably completed
             Thread.sleep(5000);
             System.out.println("goodbye");
-            //System.exit(-1);
+
             return false;
         }
         else{
             System.out.println("Good");
         }
-        //System.out.println("pidtmp: {" + pidtmp+"}");
-        //int pid = Integer.parseInt(pidtmp);
-        System.out.println("yooooouuu: " + user_html.substring(0,150));
+
+        //Remove pogdb* part from html
         user_html = user_html.substring(user_html.indexOf("*")+1);
 
+        //Python parsing logic
         try {
             File myObj = new File(raw_file_name);
             if (myObj.createNewFile()) {
@@ -188,8 +97,7 @@ public class ScholarHtmlController {
                 e.printStackTrace();
             }
 
-            // System.out.println(user_html);
-            try {
+           try {
                 FileWriter myWriter = new FileWriter(raw_file_name);
                 myWriter.write(user_html);
                 myWriter.close();
@@ -219,6 +127,7 @@ public class ScholarHtmlController {
                     break;
                 }
             }
+            //Read JSON file
         String info = "";
         try {
             File rawhtml = new File(parsed_output_name);
@@ -234,27 +143,23 @@ public class ScholarHtmlController {
             e.printStackTrace();
         }
 
+        //Use if simple JSON will work
         //JSONParser parser = new JSONParser();
         //Object obj = parser.parse(new FileReader(parsed_output_name));
         //JSONObject result_json = (JSONObject) obj;
 
-        // System.out.println(info);
 
+        //Parsing JSON file if simple JSON doesnt work
         String id = info.substring(info.indexOf("\"id\":")+7, info.indexOf("\",",info.indexOf("\"id\":")+7));
         String papers = info.substring(info.indexOf("papers\":"), info.lastIndexOf("]"));
         String regex = "},\\{";
         String[] papersArr = papers.split(regex);
 
-        System.out.println("id: "+id);
-        //System.exit(-1);
-
+        //Connect to database
         DBAccesser dba = new DBAccesser();
 
-        //if(doesnt have parent id in table){
-        // add parent to table
-        // }
-
         //try{
+        //For every paper, parse it out, put it into GSData object and store in database
         for (String paper : papersArr){
             paper += "}";
             System.out.println("paper: "+paper);
@@ -300,11 +205,10 @@ public class ScholarHtmlController {
             String[] tmpAuthorsArr = authors_and_links.split("\",");
             int counter = 0;
             for (String author : tmpAuthorsArr){
-                if(author == "{" || author.length() == 1){  //why doesnt this work????
+                if(author == "{" || author.length() == 1){  //why doesnt this work???? - lol I guess it's fixed -\(`_`)/-
                     break;
                 }
                 if(counter == 0){
-                    // author = author.substring(33);
                     System.out.println("new: "+author);
                 }
                 if(author.indexOf("\"}") > -1){
@@ -323,23 +227,55 @@ public class ScholarHtmlController {
                 authorUrlsArr.add(tmpauthurl);
                 System.out.println("author: " + authorsArr.get(counter) + " url: " + authorUrlsArr.get(counter));
                 counter++;
-                //System.exit(0);
             }
 
             System.out.println(paper.charAt(sourceurl+14));
 
+            //Use if simple.json works
             //title_short = result_json.get("title_short");
             //year = result_json.get("year");
             //doc_url = result_json.get("doc_url");
             //cited_by_count = result_json.get("cited_by_count");
             //summary_short = result_json.get("summary_short");
             //summary_short = result_json.get("summary_short");
-            //authors_and_links = result_json.get("authors_and_links");
+            //JSONObject authors_and_links_obj = result_json.get("authors_and_links");
+            //String authors_and_links = authors_and_links_obj.toString();
+            /*
+            ArrayList<String> authorsArr = new ArrayList<String>();
+            ArrayList<String> authorUrlsArr = new ArrayList<String>();
+            String[] tmpAuthorsArr = authors_and_links.split("\",");
+            int counter = 0;
+            for (String author : tmpAuthorsArr){
+                if(author == "{" || author.length() == 1){  //why doesnt this work???? - lol I guess it's fixed -\(`_`)/-
+                    break;
+                }
+                if(counter == 0){
+                    System.out.println("new: "+author);
+                }
+                if(author.indexOf("\"}") > -1){
+                    author.substring(0, author.length()-2);
+                }
+                System.out.println("now: " + author + " " + author.indexOf("\"") + " " + author.indexOf("\"",3));
+                authorsArr.add(author.substring(author.indexOf("\"")+1,author.indexOf("\"",3)));
+                int endindex = author.indexOf("\"", author.indexOf(": \"")+ 3);
+                String tmpauthurl;
+                if(endindex > -1) {
+                    tmpauthurl = author.substring(author.indexOf(": \"") + 3, endindex);
+                }
+                else{
+                    tmpauthurl = author.substring(author.indexOf(": \"") + 3);
+                }
+                authorUrlsArr.add(tmpauthurl);
+                System.out.println("author: " + authorsArr.get(counter) + " url: " + authorUrlsArr.get(counter));
+                counter++;
+            }
+            */
             //scholar_id = result_json.get("scholar_id");
             //source_url = result_json.get("source_url");
             //referenced_by = result_json.get("referenced_by");
+            //cited_by_count = result_json.get("cited_by_count");
 
-
+            //Sanity checks
             System.out.println("title: " + title_short + " from: " + title + " to: " + paper.indexOf("\"", title + 15));
             System.out.println("year: " + year + " from: " + yr + " to: " + paper.indexOf("\"", yr + 5));
             System.out.println("doc_url: " + doc_url + " from: " + doc + " to: " + paper.indexOf("\"", doc + 10));
@@ -352,7 +288,6 @@ public class ScholarHtmlController {
             System.out.println("referenced_by: " + referenced_by + " from: " + ref + " to: " + paper.indexOf("]", ref));
 
 
-            System.out.println(" ");
             GSData gsd = new GSData(title_short, Integer.parseInt(year));
             gsd.doc_url = doc_url;
             gsd.cited_by_count = Integer.parseInt(cited_by_count);
@@ -363,15 +298,9 @@ public class ScholarHtmlController {
             gsd.queryUrl = title + ".com";
             gsd.authors = authorsArr;
             gsd.author_urls = authorUrlsArr;
-            //DBAccesser dba = new DBAccesser();
-            //dba.insertNewEntry(gsd, 173);
-            dba.insertNewEntry2(gsd, id);
 
+            dba.insertNewEntry2(gsd, id);
         }
-        //}
-        //catch (JSONException e){
-          //  e.printStackTrace();
-        //}
         return true;
     }
 }
