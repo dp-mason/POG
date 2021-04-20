@@ -32,8 +32,9 @@ public class ScholarHtmlController {
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
     public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, ParseException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
-        // TODO: if it is a "cited by" page.
-        String id = "raw_html"; //XXX: badbad fix this soon
+        // TODO: if it is a "cited by" page
+
+        String id = user_html.substring(0,user_html.indexOf("---"));
 
         String raw_file_name = id + ".html";
         String parsed_output_name = id + ".json";
