@@ -48,10 +48,17 @@
 		<!--<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
+<<<<<<< HEAD
 			<version>1.1</version>-->
 			<!--<scope>system</scope>
 			<systemPath>${basedir}/lib/json-simple-1.1.jar</systemPath>-->
 		<!--</dependency>-->
+=======
+			<version>1.1</version>
+			<!--<scope>system</scope>
+			<systemPath>${basedir}/lib/json-simple-1.1.jar</systemPath>-->
+		</dependency>
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -60,6 +67,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+<<<<<<< HEAD
 			</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
@@ -67,6 +75,10 @@
 			<artifactId>jackson-core</artifactId>
 			</dependency>
 
+=======
+			<version>8.0.11</version>
+		</dependency>
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 	</dependencies>
 	<!--<build>
 		<plugins>
@@ -96,7 +108,11 @@
 						</goals>
 					</execution>
 					<execution>
+<<<<<<< HEAD
 						<id>install-external</id>
+=======
+						<id>install-external-2</id>
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 						<phase>clean</phase>
 						<configuration>
 							<file>${basedir}/lib/mysql-connector-java-8.0.11.jar</file>

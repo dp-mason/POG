@@ -100,6 +100,7 @@ var width = window.innerWidth,
   height = window.innerHeight, 
   root;
 
+var counter= 0;
 var notes = d3.select('#notes')
     .style({
         'width': width * 1/6 + 'px',
@@ -178,6 +179,7 @@ var data= {
             }
         ],
         "name": "Graph signal processing",
+        "summary_short": "blah blah blah",
         "year": 2018
     },
     {
@@ -218,7 +220,7 @@ function update() {
     .start();
 
 // Update links.
-  link = link.data(links, function(d) { return d.target.id; });
+  link = link.data(links, function(d) { return d.target.name; });
 
   link.exit().remove();
 
@@ -226,7 +228,7 @@ function update() {
     .attr("class", "link");
 
 // Update nodes.
-  node = node.data(nodes, function(d) { return d.id; });
+  node = node.data(nodes, function(d) { return d.name; });
 
   node.exit().remove();
 
@@ -267,18 +269,15 @@ function color(d) {
 
 
 function addnew(d, newchild){
+  counter++;
   if(!d.children){
     d.children= [];
   }
   d.children.push(newchild);
 }
-var newchild= 
-            {
-                "summary_short": "newchild summary",
-                "name": "New Child",
-                //"children": [],
-                "year": 2021
-            };
+
+
+
 
 function click(d){
   if (d3.event.defaultPrevented) return;
@@ -305,7 +304,15 @@ function click(d){
 
     //this needs to be the event listener actually
     if(!d.children && !d._children){
+      var newchild= 
+            {
+                "summary_short": "newchild summary",
+                "name": "New Child" + String(counter),
+                //"children": [],
+                "year": 2021
+            };
       addnew(d, newchild);
+      d.children=[newchild];
     }
 
     update();

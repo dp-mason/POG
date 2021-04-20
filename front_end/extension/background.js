@@ -6,6 +6,20 @@
 //    return;
 //}
 
+
+//catches messages from graph js
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(sender.tab ?
+                  "from a content script:" + sender.tab.url :
+                  "from the extension");
+        //check if this is a url
+        var cited_by_url= request.url;
+        sendResponse({search: "goodbye"});
+    }
+  );
+
+
 chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.executeScript( {file: "/d3.js"});
     //chrome.tabs.executeScript( {file: "reviews.js" });
@@ -15,11 +29,14 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener((msg) => {
     if(msg.type == "html"){
         raw_html = msg.html;
+        // STAND_IN, TODO: prepend the id of th parent paper to the raw html so that the backend know whose children this is
+        raw_html = "PAPER_ID---" + raw_html
         console.log('recved html msg', raw_html);
         // send this raw html to your server, wait for response, then update the user with info
 
         // send raw html to our server for parsing
         // recv the result of the parsing and print it to the console
+<<<<<<< HEAD
         const url = "http://localhost:8080/papers/submitPaper";
         console.log("fetching");
         myHeaders = new Headers();
@@ -29,6 +46,10 @@ chrome.runtime.onMessage.addListener((msg) => {
         raw_html="pogdb*"+raw_html;
         console.log(raw_html);
         /* uncooment!!!!!!!!!!!!!!!!!!!!!!!1
+=======
+        //const url = "http://localhost:8080/papers/submitPaper";
+        const url = "http://104.198.137.246:8080/papers/submitPaper";
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
         fetch(url, {
             method : "POST",
             body: raw_html,
@@ -76,6 +97,19 @@ chrome.runtime.onMessage.addListener((msg) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // button script used to test the page update functionality with hard coded data
+    
+    var updateButton = document.getElementById('test_update');
+    //var new_url = "https://scholar.google.com/scholar?cites=7599416368689954089&as_sdt=5,43&sciodt=0,43&hl=en"
+
+    updateButton.addEventListener('click', function() {
+        console.log("Updating...")
+        updating = chrome.tabs.update({url: "https://developer.mozilla.org"})
+        updating.then(onUpdated, onError)
+        console.log("completed update")
+    })
+    
     var searchButton = document.getElementById('search');
     searchButton.addEventListener('click', function() {
             /*Python version

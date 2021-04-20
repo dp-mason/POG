@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicLong;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 @CrossOrigin
 @RestController
 @RequestMapping("/papers")
@@ -31,6 +34,7 @@ public class ScholarHtmlController {
     //      or or "cited by" page for a paper
     // Eventually we want this to return a JSON with parsed paper info, but for now "void" is ok
     @CrossOrigin
+<<<<<<< HEAD
     @PostMapping(value = "/findPaper"/*, produces = "application/json"*/)
     //~ParseException
     public @ResponseBody ResponseEntity<GSData[]> Recv_Paper_Html(@RequestBody String paper_id) throws IOException, InterruptedException {
@@ -54,10 +58,13 @@ public class ScholarHtmlController {
     }
 
     @CrossOrigin
+=======
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
     //~ParseException
     public @ResponseBody boolean StorePaperInfo(@RequestBody String user_html) throws IOException, InterruptedException {
         // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
+<<<<<<< HEAD
         // TODO: if it is a "cited by" page.
         String htmlid = "";
         //For when we change how files are named
@@ -66,10 +73,16 @@ public class ScholarHtmlController {
 
         String raw_file_name = htmlid + ".html";
         String parsed_output_name = htmlid + ".json";
+=======
+        // TODO: if it is a "cited by" page
+
+        String id = user_html.substring(0,user_html.indexOf("---"));
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 
         //Front end needs to append pogdb* to message to deal with duplicate messages
         if(user_html.indexOf("pogdb*") == -1){
 
+<<<<<<< HEAD
             System.out.println("bad");
             //wait until handling of correct message has probably completed
             Thread.sleep(5000);
@@ -85,8 +98,12 @@ public class ScholarHtmlController {
         user_html = user_html.substring(user_html.indexOf("*")+1);
 
         //Python parsing logic
+=======
+        String tmp_dir = System.getProperty("user.dir") + "/tmp/";
+
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
         try {
-            File myObj = new File(raw_file_name);
+            File myObj = new File(tmp_dir + raw_file_name);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -130,6 +147,7 @@ public class ScholarHtmlController {
             //Read JSON file
         String info = "";
         try {
+<<<<<<< HEAD
             File rawhtml = new File(parsed_output_name);
             Scanner scan = new Scanner(rawhtml);
 
@@ -180,12 +198,54 @@ public class ScholarHtmlController {
             String cited_by_count;
             if(paper.indexOf(",", count) > -1) {
                 cited_by_count = paper.substring(count+18, paper.indexOf(",", count));
+=======
+            FileWriter myWriter = new FileWriter(tmp_dir + raw_file_name);
+            myWriter.write(user_html);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        PaperInfo user_paper = new PaperInfo();
+
+        // TODO: deprecate this in the future in favor of local/frontend JavaScript parsing or native backend Java parsing
+        // call the python program to parse the file (file name as command line argument?)
+        // Runs the proper shell script depending on the OS it is running on
+        System.out.println(tmp_dir);
+	//Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+        //if (OSValidator.isUnix()) {
+	//    System.out.println("executing " + tmp_dir + "parse.sh");
+        //    Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+        //} else if (OSValidator.isWindows()) {
+        //    Runtime.getRuntime().exec(tmp_dir + "parse.bat");
+        //} else {
+        //    System.out.println("System is neither Windows nor UNIX, Mac is not yet supported");
+        //}
+
+        // wait for output json to come back from Python
+        File parsed_file = new File(tmp_dir + parsed_output_name);
+        int backoff_timeout = 1;
+        
+	// background process will parse the raw info, wait for that to happen
+	
+	while(!parsed_file.exists()) {
+            Thread.sleep(backoff_timeout);
+            backoff_timeout = backoff_timeout + 50;
+            System.out.println("Waiting for Python parsing of " + parsed_output_name + "...");
+	    //Runtime.getRuntime().exec(tmp_dir + "parse.sh");
+            if(backoff_timeout > 500) {
+                System.out.println("Took too long...");
+                break;
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
             }
             else {
                 cited_by_count = paper.substring(count+18, paper.indexOf("}", count));
             }
             String cited_by_url = paper.substring(cited_url+17, paper.indexOf("\"", cited_url+17));
 
+<<<<<<< HEAD
             String year;
             if(paper.indexOf(",", yr) > -1){
                 year = paper.substring(yr + 8, paper.indexOf(",", yr + 5));
@@ -230,6 +290,20 @@ public class ScholarHtmlController {
             }
 
             System.out.println(paper.charAt(sourceurl+14));
+=======
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(new FileReader(tmp_dir + parsed_output_name));
+        JSONObject result_json = (JSONObject) obj;
+
+        try {
+            parsed_file.delete();
+        } catch (SecurityException e) {
+            System.out.println("Permission to delete processed json file was denied");
+        }
+        // Initialize the data structure that will be used to enter stuff into SQL database
+        // Loop over all papers on this page
+        //      [papers at index i].initFromJSON("output.json");
+>>>>>>> c3bc2d8515ea7983b7349db8049ad88426b3b4e5
 
             //Use if simple.json works
             //title_short = result_json.get("title_short");

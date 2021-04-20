@@ -6,7 +6,7 @@
     "version": "1.0",
   
     "browser_action": {
-        "default_icon": "pog.png",
+        "default_icon": "poghog1.png",
         "default_popup": "popup.html"
     },
     "permissions": [
@@ -25,5 +25,7 @@
         "scripts": ["background.js"],
         "persistent": true,
 	"permissions": ["activeTab", "tabs", "https://scholar.google.com/*", "http://scholar.google.com/*"]
-    }
+    },
+    "content_security_policy":"script-src 'self' 'unsafe eval' http://d3js.org/d3.v3.min.js; object-src 'self'"
+
   }
