@@ -6,6 +6,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import org.json.simple.JSONArray;
 
 import java.io.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,12 +33,11 @@ public class ScholarHtmlController {
     @CrossOrigin
     @PostMapping(value = "/submitPaper"/*, produces = "application/json"*/)
     public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, ParseException, InterruptedException {
-        // TODO: in the future the "parent" scholar id and page number will be included as the first few characters of the sent string
-        // TODO: if it is a "cited by" page.
-        String id = "raw_html"; //XXX: badbad fix this soon
+        
+	String parent_id = user_html.substring(0,user_html.indexOf("---"));
 
-        String raw_file_name = id + ".html";
-        String parsed_output_name = id + ".json";
+        String raw_file_name = parent_id + ".html";
+        String parsed_output_name = parent_id + ".json";
 
         String tmp_dir = System.getProperty("user.dir") + "/tmp/";
 
@@ -107,6 +108,48 @@ public class ScholarHtmlController {
         // Initialize the data structure that will be used to enter stuff into SQL database
         // Loop over all papers on this page
         //      [papers at index i].initFromJSON("output.json");
+	
+	//TODO: AT THIS POINT OBJECT "obj" CONTAINS ALL OF THE DATA FROM THE PARSED JSON FILE ABOUT THE CITERS, 
+	//TODO: FUNCTION/CLASS THAT ABSTRACTS AWAY THE DATABASE STUFF?
+	//TODO: parent_id stores the id of parent of the papers in the json file
+	
+	
+	JSONArray papers = (JSONArray) result_json.get("papers");
+
+	GSData gsd;
+	DBAccesser dba = new DBAccesser();
+
+	for(Object paper : papers){
+		JSONObject paper_json = (JSONObject) paper;
+		//gsd = new GSData(((String) paper.get("title_short")), ((int)((Long) paper.get("year"))));
+		 	gsd = new GSData(paper_json.get("title_short").toString(), Integer.parseInt(paper_json.get("year").toString()));
+
+		gsd.cited_by_count = Integer.parseInt(paper_json.get("cited_by_count").toString());
+		gsd.scholar_id = paper_json.get("scholar_id").toString();
+		//this.year = (Long) parsed_object.get("year");
+		//this.title_short = (String) parsed_object.get("title_short");
+		JSONArray authors_and_links_arr = (JSONArray) paper_json.get("authors_and_links");
+		ArrayList author_names = new ArrayList();
+		ArrayList author_urls = new ArrayList();
+		for (Object author_obj : authors_and_links_arr){
+			Object[] author = ((JSONArray) author_obj).toArray();
+			
+			author_names.add(author[0].toString());
+			author_urls.add(author[1].toString());
+		}
+		gsd.authors = author_names;
+		gsd.author_urls = author_urls;
+		//authors_and_links = (Hashtable<String, String>) parsed_object.get("authors_and_links");
+		gsd.summary = paper_json.get("summary_short").toString();
+		gsd.source_url = paper_json.get("source_url").toString();
+		//gsd.scholar_id = (String) paper.get("scholar_id");
+		gsd.cited_by_url = paper_json.get("cited_by_url").toString();
+		//gsd.cited_by_count = (Long) paper.get("cited_by_count");
+		///this.referenced_by;
+		gsd.doc_url = paper_json.get("doc_url").toString();
+
+		dba.insertNewEntry2(gsd, parent_id);
+	}
 
         // send back the JSON file that was generated to the user
         //InputStream raw_json = getClass().getResourceAsStream(parsed_output_name);
