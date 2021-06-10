@@ -2,6 +2,19 @@ package com.example.restservice;
 
 // This Class corresponds wit he "ShortPaperInfo" Class in the Python program
 
+import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+//import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.*;
+import java.util.concurrent.atomic.AtomicLong;
+
+
+
 import java.util.Hashtable;
 
 public class PaperInfo {
@@ -16,7 +29,7 @@ public class PaperInfo {
     //Vector<PaperInfo> referenced_by;
     String doc_url;
 
-    /*public void initFromJSON(String file_name) throws JSONException, IOException, ParseException {
+    public void initFromJSON(String file_name) throws IOException, ParseException {
         // TODO: THIS IS NAIIVE, only sends back our predetermined output.JSON, get it to work with the python output
         Object obj = new JSONParser().parse(new FileReader(file_name));
         // typecasting obj to JSONObject
@@ -35,6 +48,6 @@ public class PaperInfo {
         this.cited_by_count = (Long) parsed_object.get("cited_by_count");
         //this.referenced_by;
         this.doc_url = (String) parsed_object.get("doc_url");
-    }*/
+    }
 
 }

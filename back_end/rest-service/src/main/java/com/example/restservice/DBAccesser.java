@@ -32,7 +32,7 @@ public class DBAccesser {
 			}
 			else{
 				//url = "jdbc:mysql://localhost:3308/pogdb";
-				url = "jdbc:mysql://localhost:3306/pogdb";
+				url = "jdbc:mysql://localhost:3306/pogdb?autoReconnect=true&useSSL=false";
 			}
 		    //String user      = "root";
 		    String user = "demotest";
@@ -122,6 +122,10 @@ public class DBAccesser {
 
 	public void insertNewEntry2(GSData gsd, String pid) {
 		int paper_id = -1;
+		if (this.conn == null){
+			System.out.println("...");
+			return;
+		}
 		//Insert new paper w/ authors
 		try {
 			//Check if paper already in database

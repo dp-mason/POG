@@ -34,6 +34,4 @@ public class GreetingController {
         System.out.println("bop");
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
-
-
 }

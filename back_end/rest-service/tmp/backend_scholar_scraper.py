@@ -96,9 +96,12 @@ class ShortPaperInfo():
         
         subsection = entry_div.find('div', class_='gs_a')
         
-        author_dict = {}
+        author_dict = []
         for auth_a_tags in subsection.find_all('a'):
-            author_dict[auth_a_tags.text] = "https://scholar.google.com" + auth_a_tags.get('href')
+            #change from dictionary to 2d array where author name is the first element of subarray
+            #author_dict[auth_a_tags.text] = "https://scholar.google.com" + auth_a_tags.get('href')
+            this_elem = [auth_a_tags.text, "https://scholar.google.com" + auth_a_tags.get('href')]
+            author_dict.append(this_elem)
         
         # extract the year
         raw_string = str(subsection)

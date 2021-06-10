@@ -120,9 +120,28 @@ public class ScholarHtmlController {
 	DBAccesser dba = new DBAccesser();
 
 	for(Object paper : papers){
+		System.out.println("Processing paper...");
 		JSONObject paper_json = (JSONObject) paper;
 		//gsd = new GSData(((String) paper.get("title_short")), ((int)((Long) paper.get("year"))));
-		 	gsd = new GSData(paper_json.get("title_short").toString(), Integer.parseInt(paper_json.get("year").toString()));
+		int parsed_yr = -2; 
+		try{
+			parsed_yr = Integer.parseInt(paper_json.get("year").toString());	
+		}
+		catch(NumberFormatException e){
+			parsed_yr = -2;
+		}
+		catch(NullPointerException e){
+			parsed_yr = -2;
+		}
+
+		String parsed_title = "foo";
+		try{
+			parsed_title = paper_json.get("title_short").toString();	
+		}
+		catch(NullPointerException e){
+			continue;
+		}
+		 	gsd = new GSData(parsed_title, parsed_yr);
 
 		gsd.cited_by_count = Integer.parseInt(paper_json.get("cited_by_count").toString());
 		gsd.scholar_id = paper_json.get("scholar_id").toString();
