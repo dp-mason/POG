@@ -311,41 +311,42 @@ if DEBUG:
     backend_tests()
 
 def main():
-    # Pseudocode for final real functionality:
-    # WAIT LOOP ON EVENT
-        # Open HTML file
-        # Parse results found in the HTML opened
-        # Create a JSON that will be sent back to the REST API
+    #open socket
+    #loop
+    #   listen
+    #   recv html string
+    #   parse
+    #   send parsed info back over socket
 
-    curr_workdir = os.getcwd()
-    for filename in os.listdir(curr_workdir):
-        if filename.endswith(".html"):
-            print("file: ", filename, " discovered")
-            id = filename[0:-5] # cutout the ".html" extension from id
-            outfile_name = ""
-            
-            # prototype for the stand-in "id" we might give to html pages that are search result pages and aren't "cited by" pages
-            outfile_name = id + ".json"
+    # https://stackoverflow.com/questions/48266026/socket-java-client-python-server
+    
+    import socket
 
-            while not os.path.exists(filename):
-                time.sleep(1)
+    soc = socket.socket()
+    host = "localhost"
+    port = 2022
+    soc.bind((host, port))
+    soc.listen(5)
 
-            if not os.path.isfile(filename):
-                raise ValueError("%s isn't a file!" % filename)
+    while True:
+        conn, addr = soc.accept()
+        print("Got connection from",addr)
+        length_of_message = int.from_bytes(conn.recv(2), byteorder='big')
+        
+        # receive the raw html from Java
+        msg = conn.recv(length_of_message).decode("UTF-8")
+        
+        print(msg)
+        print("length of message: ", length_of_message)
 
-            input_file = open(filename, "r", encoding='utf-8')
-            raw_html = input_file.read()
-            parsed_info = ParsedPageInfo(filename[0:-5], raw_html)
-            parsed_info.to_json_file(outfile_name)
-            
-            # delete the html input file that was just parsed
-            if os.path.exists(filename):
-                os.remove(filename)
-            else:
-                print("The file " + filename + "does not exist")
-                
-            # TODO: how does python interface with SQL
-            # Make an entry into the SQL table for the parsed papers, make info updates in table if necessary
+        if "Hello" in msg:
+            message_to_send = "bye".encode("UTF-8")
+            conn.send(len(message_to_send).to_bytes(2, byteorder='big'))
+            conn.send(message_to_send)
+        else:
+            print("no message")
+
+        parsed_info = ParsedPageInfo("PLACE_HOLDER_ID", raw_html)
 
 if DEBUG != 1:
     main()
