@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 
 import java.io.*;
 import java.net.*;
+import java.lang.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @CrossOrigin
@@ -36,12 +37,19 @@ public class ScholarHtmlController {
 	public @ResponseBody JSONObject Recv_Paper_Html(@RequestBody String user_html) throws IOException, ParseException, InterruptedException {
 
 		String parent_id = user_html.substring(0,user_html.indexOf("---"));
-
+		
+		//TODO: should this be done on the javascript side instead? it would be less latency transferring over network
+		// trim down the raw html so it can be sent over socket connection and faster parsing
+		user_html = user_html.substring(user_html.indexOf("<div id=\"gs_bdy_ccl\" role=\"main\">"), user_html.indexOf("<div id=\"gs_res_ccl_bot\">"));
+		
+		String parsed_paper_info = "void";
 		PaperInfo user_paper = new PaperInfo();
 
 		// open socket used to communicate with the python parser server
 		//	https://stackoverflow.com/questions/48266026/socket-java-client-python-server
 
+
+		
 		try{
 			// open the socket
 			Socket socket = new Socket("localhost",2022);  
@@ -50,16 +58,17 @@ public class ScholarHtmlController {
 			DataInputStream din = new DataInputStream(socket.getInputStream());
 
 			// send the raw html as a string over the socket
-			dout.writeUTF("Hello");
+			dout.writeUTF(user_html);
 			dout.flush();
 
 			System.out.println("send first mess");
 			
 			// read in the parsed json output from the socket
-			String parsed_paper_info = din.readUTF();//in.readLine();
+			parsed_paper_info = din.readUTF();//in.readLine();
 
-			System.out.println("Message"+str);
-
+			System.out.println("Message"+parsed_paper_info);
+			
+			Thread.sleep(4000);
 
 			dout.close();  
 			din.close();

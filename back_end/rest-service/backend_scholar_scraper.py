@@ -54,8 +54,7 @@ def extract_citation_url(entry_div):
     #	https://scholar.google.com/scholar?q=info:      {id}      :scholar.google.com/&output=cite&scirp={p}&hl=en
     # Turns into:
     #	https://scholar.google.com/scholar?q=info:  f0Kgtf5gNsgJ  :scholar.google.com/&output=cite&scirp={p}&hl=en
-    # where {id} is replaced with the "data-cid" in the TAGS of the <div> for that specific search result entry:
-    # 	<div class="gs_r gs_or gs_scl" data-cid="f0Kgtf5gNsgJ" data-did="f0Kgtf5gNsgJ" data-lid data-rp="0">…</div>
+    # where {id} is replaced with the "data-cid" in the TAGS of the <div> for that specific search result entry
     #   We might be able to use these "c-ids" in our own SQL table, but we should think about it a bit more carefully
     cit_url_start = "https://scholar.google.com/scholar?q=info:"
     cit_url_end   = ":scholar.google.com/&output=cite&scirp={p}&hl=en"
@@ -94,13 +93,15 @@ class ShortPaperInfo():
         self.referenced_by = list(set(self.referenced_by + papers_on_req_page))
 
     def authordict_and_year(self, entry_div):
-        # TODO: properly parse the line
-        # 	<div class="gs_a"><a href="https://scholar.google.com/citations?user=YirSp_cAAAAJ&amp;hl=en&amp;oi=sra">K <b>Börner</b></a>, S Sanyal, <a href="https://scholar.google.com/citations?user=U3CXAPsAAAAJ&amp;hl=en&amp;oi=sra">A Vespignani</a>&nbsp;- …&nbsp;of information <b>science </b>and&nbsp;…, 2007 - Wiley Online Library</div>
+        
         subsection = entry_div.find('div', class_='gs_a')
         
-        author_dict = {}
+        author_dict = []
         for auth_a_tags in subsection.find_all('a'):
-            author_dict[auth_a_tags.text] = "https://scholar.google.com" + auth_a_tags.get('href')
+            #change from dictionary to 2d array where author name is the first element of subarray
+            #author_dict[auth_a_tags.text] = "https://scholar.google.com" + auth_a_tags.get('href')
+            this_elem = [auth_a_tags.text, "https://scholar.google.com" + auth_a_tags.get('href')]
+            author_dict.append(this_elem)
         
         # extract the year
         raw_string = str(subsection)
@@ -215,6 +216,12 @@ class ParsedPageInfo():
             file_name += ".json"
         with open(file_name, 'w') as outfile:
             json.dump(self, outfile, sort_keys=True, indent=4, default=vars)
+    def to_json_string(self): 
+        return json.dumps(self, sort_keys=True, indent=4, default=vars)
+
+#def send_object_over_socket_json(obj, conn):
+#   json.dump(obj, conn, sort_keys=True, indent=4, default=vars)
+#   return
 
 # TODO: this and all other standalone functions can be removed from the backend parser, they are not used
 # Takes a user search string and searches for it on google scholar
@@ -265,9 +272,9 @@ def stand_alone_tests():
     search_results = scholar_search(search_url)
     search_results[0].cache_citing_papers(0)
     print(search_results[0])
-    print("\nsearch_result.authors_and_links['K Börner'] == ", search_results[0].authors_and_links['K Börner'], "\n")
+    print("\nsearch_result.authors_and_links['K Borner'] == ", search_results[0].authors_and_links['K Borner'], "\n")
     
-    assert search_results[0].authors_and_links['K Börner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
+    assert search_results[0].authors_and_links['K Borner'] == "https://scholar.google.com/citations?user=YirSp_cAAAAJ&hl=en&oe=ASCII&oi=sra"
     assert search_results[0].scholar_id == "f0Kgtf5gNsgJ"
 
     # save ShortPaper class as JSON
@@ -310,43 +317,53 @@ if DEBUG:
     backend_tests()
 
 def main():
-    # Pseudocode for final real functionality:
-    # WAIT LOOP ON EVENT
-        # Open HTML file
-        # Parse results found in the HTML opened
-        # Create a JSON that will be sent back to the REST API
+    #open socket
+    #loop
+    #   listen
+    #   recv html string
+    #   parse
+    #   send parsed info back over socket
 
-    # TODO: file path should be passed as a command line argument
-    file_path = "raw_html.html"
-    id = file_path[0:-5] # cutout the ".html" extension from id
-    outfile_name = ""
+    # https://stackoverflow.com/questions/48266026/socket-java-client-python-server
     
-    # prototype for the stand-in "id" we might give to html pages that are search result pages and aren't "cited by" pages
-    if(id == "search_results"):
-        outfile_name = "parsed_search_results.json"
-    else:
-        outfile_name = id + ".json"
+    import socket
 
-    while not os.path.exists(file_path):
-        time.sleep(1)
+    soc = socket.socket()
+    host = "localhost"
+    port = 2022
+    soc.bind((host, port))
+    soc.listen(5)
 
-    if not os.path.isfile(file_path):
-        raise ValueError("%s isn't a file!" % file_path)
-
-    input_file = open(file_path, "r", encoding='utf-8')
-    raw_html = input_file.read()
-    parsed_info = ParsedPageInfo(file_path[0:-5], raw_html)
-    parsed_info.to_json_file(outfile_name)
-    
-    # delete the html input file that was just parsed
-    if os.path.exists(file_path):
-        os.remove(file_path)
-    else:
-        print("The file " + file_path + "does not exist")
+    while True:
+        conn, addr = soc.accept()
+        print("Got connection from",addr)
+        length_of_message = int.from_bytes(conn.recv(2), byteorder='big')
         
-    # TODO: how does python interface with SQL
-    # Make an entry into the SQL table for the parsed papers, make info updates in table if necessary
-    return
+        # receive the raw html from Java
+        raw_html = conn.recv(length_of_message).decode("UTF-8")
+        
+        print(raw_html)
+        print("length of message: ", length_of_message)
+
+        #if "Hello" in msg:
+        #    message_to_send = "bye".encode("UTF-8")
+        #    conn.send(len(message_to_send).to_bytes(2, byteorder='big'))
+        #    conn.send(message_to_send)
+        #else:
+        #    print("no message")
+
+        parsed_info = ParsedPageInfo("PLACE_HOLDER_ID", raw_html)
+        json_ized_info = parsed_info.to_json_string()
+
+        # send the json string back to java over the socket
+        # conn.send(len(message_to_send).to_bytes(2, byteorder='big'))
+        print("sending json string back to Java\n\n", json_ized_info)
+        response = parsed_info.to_json_string().encode("UTF-8")
+        conn.send(len(response).to_bytes(2, byteorder='big'))
+        conn.send(response)
+
+        
+
 
 if DEBUG != 1:
     main()
